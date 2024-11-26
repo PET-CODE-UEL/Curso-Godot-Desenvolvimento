@@ -30,8 +30,9 @@ func interact():
 			result.collider.interact()
 
 func plant():
-	var result = raycast(1)
+	var result = raycast(3)
 	if result:
+		print("toma")
 		var corn_instance = corn_scene.instantiate()
 		get_tree().get_root().add_child(corn_instance)
 		corn_instance.global_transform.origin = result.position
@@ -52,6 +53,5 @@ func raycast(layer:int):
 
 	# Chamando o intersect_ray
 	var result = space_state.intersect_ray(ray_params)
-	
 	return result
 	
