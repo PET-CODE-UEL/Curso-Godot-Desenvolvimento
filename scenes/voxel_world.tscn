@@ -2,15 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player.tscn" id="1_vm17b"]
 
-[sub_resource type="VoxelStreamRegionFiles" id="VoxelStreamRegionFiles_l7yva"]
+[sub_resource type="VoxelStreamRegionFiles" id="VoxelStreamRegionFiles_5xrjk"]
+save_generator_output = true
+directory = "res://"
 
-[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_y6n5s"]
-channel = 0
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_ly2jk"]
 
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_xso6y"]
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_4rjxp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqqvd"]
-vertex_color_use_as_albedo = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sddtl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2sho"]
 sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)
@@ -25,11 +25,11 @@ sky = SubResource("Sky_meneh")
 
 [node name="VoxelWorld" type="Node3D"]
 
-[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
-stream = SubResource("VoxelStreamRegionFiles_l7yva")
-generator = SubResource("VoxelGeneratorFlat_y6n5s")
-mesher = SubResource("VoxelMesherTransvoxel_xso6y")
-material_override = SubResource("StandardMaterial3D_gqqvd")
+[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+stream = SubResource("VoxelStreamRegionFiles_5xrjk")
+generator = SubResource("VoxelGeneratorFlat_ly2jk")
+mesher = SubResource("VoxelMesherTransvoxel_4rjxp")
+material = SubResource("StandardMaterial3D_sddtl")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_vm17b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.2776, 0)
@@ -39,8 +39,3 @@ environment = SubResource("Environment_fdyt0")
 
 [node name="Sol" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.866025, 0.5, 0, 0.5, 0.866025, -1, 3.78552e-08, -2.18557e-08, 46.6612, 45, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 9.53674e-07, 27.2605, -17.175)
-current = true
-fov = 67.5
