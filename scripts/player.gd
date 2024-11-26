@@ -26,7 +26,7 @@ func _process(_delta):
 	rotation.y = rotation_horizontal
 	camera_pivot.rotation.x = rotation_vertical
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		# Atualizar rotations com base no movimento do mouse
 		rotation_horizontal -= event.relative.x * mouse_sensitivity.x
