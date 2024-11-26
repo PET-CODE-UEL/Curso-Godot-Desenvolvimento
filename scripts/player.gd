@@ -12,10 +12,19 @@ var rotation_vertical: float = 0.0
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 
+@onready var inventory = $Inventory
+@onready var ui = $CanvasLayer
+@onready var interacter = $Interacter
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	inventory.connect("inventory_updated", ui.update_corn_amount)
+	interacter.connect("harvested_crop", inventory.add_corn)
+	interacter.connect("update_prompt_text", ui.update_prompt_text)
 
+func _process(_delta):
+	rotation.y = rotation_horizontal
+	camera_pivot.rotation.x = rotation_vertical
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -47,8 +56,3 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-
-func _process(_delta):
-	rotation.y = rotation_horizontal
-	camera_pivot.rotation.x = rotation_vertical
