@@ -1,16 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://brnjfmevhvwcy"]
+[gd_scene load_steps=7 format=3 uid="uid://brnjfmevhvwcy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qq77i"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bfuon"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_si1y0"]
+size = Vector3(1.0255, 2.12256, 1.34155)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4knc6"]
+lightmap_size_hint = Vector2i(11, 21)
+size = Vector3(1, 1, 0.4)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4243r"]
+height = 0.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_esla5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2dygw"]
+top_radius = 0.15
+bottom_radius = 0.12
+height = 0.4
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_qq77i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_bfuon")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00238524, -0.101318, 0.0865479)
+shape = SubResource("BoxShape3D_si1y0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142101, 0.520586)
+mesh = SubResource("BoxMesh_4knc6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999978, -0.0066322, 0, 0.0066322, 0.999978, 0, 0.499487, -0.169523)
+mesh = SubResource("SphereMesh_4243r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_esla5")
@@ -20,3 +42,14 @@ mesh = SubResource("CapsuleMesh_esla5")
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386672, 0)
 fov = 37.8493
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -1, 0)
+mesh = SubResource("CylinderMesh_2dygw")
+skeleton = NodePath("../MeshInstance3D4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -1, 0)
+mesh = SubResource("CylinderMesh_2dygw")
