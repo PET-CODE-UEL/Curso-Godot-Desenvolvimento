@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=10 format=3 uid="uid://difjsubfpsgre"]
 
+[ext_resource type="Texture2D" uid="uid://ly3yp5ys4pg4" path="res://assets/texture/grama.jpg" id="1_gxc84"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player.tscn" id="1_vm17b"]
 
 [sub_resource type="VoxelStreamRegionFiles" id="VoxelStreamRegionFiles_5xrjk"]
@@ -11,6 +12,8 @@ directory = "res://"
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_4rjxp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sddtl"]
+albedo_texture = ExtResource("1_gxc84")
+uv1_triplanar = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2sho"]
 sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)

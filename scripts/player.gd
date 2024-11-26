@@ -1,8 +1,29 @@
+class_name Player
 extends CharacterBody3D
-
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
+@export var mouse_sensitivity: Vector2 = Vector2(0.01, 0.01)
+
+var rotation_horizontal: float = 0.0
+var rotation_vertical: float = 0.0
+
+@onready var camera_pivot: Node3D = $CameraPivot
+@onready var camera: Camera3D = $CameraPivot/Camera3D
+
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		# Atualizar rotations com base no movimento do mouse
+		rotation_horizontal -= event.relative.x * mouse_sensitivity.x
+		rotation_vertical -= event.relative.y * mouse_sensitivity.y
+		# Limitar a rotation vertical
+		rotation_vertical = clamp(rotation_vertical, deg_to_rad(-90), deg_to_rad(90))
 
 
 func _physics_process(delta: float) -> void:
@@ -26,3 +47,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _process(_delta):
+	rotation.y = rotation_horizontal
+	camera_pivot.rotation.x = rotation_vertical
