@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=15 format=3 uid="uid://difjsubfpsgre"]
 
 [ext_resource type="Script" path="res://scripts/voxel_world.gd" id="1_bbor0"]
 [ext_resource type="Texture2D" uid="uid://ly3yp5ys4pg4" path="res://assets/texture/grama.jpg" id="1_gxc84"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player.tscn" id="1_vm17b"]
 [ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/corn.tscn" id="4_2cf0c"]
 [ext_resource type="PackedScene" uid="uid://xt5alnos77b1" path="res://scenes/plantation.tscn" id="5_05iau"]
+[ext_resource type="PackedScene" uid="uid://bfvwamua164r3" path="res://assets/models/low_poly_farm.glb" id="6_ipofk"]
 
 [sub_resource type="VoxelStreamRegionFiles" id="VoxelStreamRegionFiles_5xrjk"]
 save_generator_output = true
@@ -29,10 +30,14 @@ background_mode = 2
 background_color = Color(0.171351, 0.695055, 1, 1)
 sky = SubResource("Sky_meneh")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbc1e"]
+size = Vector3(14.0119, 1, 10.1441)
+
 [node name="VoxelWorld" type="Node3D"]
 script = ExtResource("1_bbor0")
 
 [node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.5458, 0)
 stream = SubResource("VoxelStreamRegionFiles_5xrjk")
 generator = SubResource("VoxelGeneratorFlat_ly2jk")
 mesher = SubResource("VoxelMesherTransvoxel_4rjxp")
@@ -57,3 +62,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8121, 0.02, 6.01881)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93161, 0.02, 1.91168)
 collision_layer = 4
 collision_mask = 5
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_ipofk")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.07318, -11.4149, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.2069, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene/StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, -17.9691, 0, -22.5993)
+shape = SubResource("BoxShape3D_wbc1e")
