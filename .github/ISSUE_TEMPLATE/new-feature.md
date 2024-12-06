@@ -7,8 +7,16 @@ assignees: ''
 
 ---
 
-**Dependência:**
+**Dependência:**  
+- [ ] [Referência das Issues]
 
-- [ ] 
+**Descrição:**  
 
-**Descrição:**
+
+**Arquivos criados/alterados:**  
+1. 
+2. 
+
+**Integração:**  
+- 
+-
