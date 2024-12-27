@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://brnjfmevhvwcy"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_qq77i"]
-[ext_resource type="Script" path="res://scripts/UI.gd" id="2_drdsh"]
-[ext_resource type="Script" path="res://scripts/interacter.gd" id="2_y4ix7"]
-[ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/corn.tscn" id="3_ks3wp"]
-[ext_resource type="Script" path="res://scripts/inventory.gd" id="3_vvlcw"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qq77i"]
+[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_drdsh"]
+[ext_resource type="Script" path="res://scripts/cultivation/interacter.gd" id="2_y4ix7"]
+[ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/plants/corn.tscn" id="3_ks3wp"]
+[ext_resource type="Script" path="res://scripts/ui/inventory.gd" id="3_vvlcw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_si1y0"]
 size = Vector3(1.0255, 2.12256, 1.34155)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bffrheonunwf6"]
 
-[ext_resource type="Script" path="res://scripts/corn.gd" id="1_1qt1c"]
+[ext_resource type="Script" path="res://scripts/cultivation/corn.gd" id="1_1qt1c"]
 [ext_resource type="PackedScene" uid="uid://cqnqxckqjkh4s" path="res://assets/models/lowpoly_vp_corn_large.glb" id="2_bfm75"]
 [ext_resource type="PackedScene" uid="uid://di82bnnty6ho8" path="res://assets/models/lowpoly_vp_corn_medium.glb" id="3_qh12a"]
 [ext_resource type="PackedScene" uid="uid://7ign60uimu3n" path="res://assets/models/lowpoly_vp_corn_small.glb" id="4_16yin"]

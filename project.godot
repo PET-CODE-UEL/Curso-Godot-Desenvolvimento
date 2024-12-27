@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="Jogo Fazenda PET"
-run/main_scene="res://scenes/voxel_world.tscn"
+run/main_scene="res://scenes/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Double Precision", "Forward Plus")
-config/icon="res://icon.svg"
 
 [editor_plugins]
 
