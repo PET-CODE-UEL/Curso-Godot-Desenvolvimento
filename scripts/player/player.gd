@@ -11,10 +11,11 @@ var rotation_vertical: float = 0.0
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
-
+@onready var animation_tree: AnimationTree = $"CollisionShape3D/Player Model/Armação/AnimationTree"
 @onready var inventory = $Inventory
 @onready var ui = $CanvasLayer
 @onready var interacter = $Interacter
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -22,9 +23,11 @@ func _ready():
 	interacter.connect("harvested_crop", inventory.add_corn)
 	interacter.connect("update_prompt_text", ui.update_prompt_text)
 
+
 func _process(_delta):
 	rotation.y = rotation_horizontal
 	camera_pivot.rotation.x = rotation_vertical
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -49,10 +52,17 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		set_walk(true)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
+		set_walk(false)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func set_walk(value: bool):
+	animation_tree["parameters/conditions/walking"] = value
+	animation_tree["parameters/conditions/idle"] = not value
