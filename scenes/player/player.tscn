@@ -1,27 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://brnjfmevhvwcy"]
+[gd_scene load_steps=7 format=3 uid="uid://brnjfmevhvwcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qq77i"]
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_drdsh"]
 [ext_resource type="Script" path="res://scripts/cultivation/interacter.gd" id="2_y4ix7"]
 [ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/plants/corn.tscn" id="3_ks3wp"]
 [ext_resource type="Script" path="res://scripts/ui/inventory.gd" id="3_vvlcw"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_si1y0"]
-size = Vector3(1.0255, 2.12256, 1.34155)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4knc6"]
-lightmap_size_hint = Vector2i(11, 21)
-size = Vector3(1, 1, 0.4)
-
-[sub_resource type="SphereMesh" id="SphereMesh_4243r"]
-height = 0.5
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_esla5"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_2dygw"]
-top_radius = 0.15
-bottom_radius = 0.12
-height = 0.4
+[ext_resource type="PackedScene" uid="uid://c5gonk7lrvfi5" path="res://scenes/player/player_model.tscn" id="4_l6emr"]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 4
@@ -32,34 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386672, 0)
 script = ExtResource("2_y4ix7")
 corn_scene = ExtResource("3_ks3wp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00238524, -0.101318, 0.0865479)
-shape = SubResource("BoxShape3D_si1y0")
-
-[node name="Costas" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00238524, 0.243419, 0.434038)
-mesh = SubResource("BoxMesh_4knc6")
-skeleton = NodePath("../..")
-
-[node name="Oculos" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999978, -0.0066322, 0, 0.0066322, 0.999978, 0.00238524, 0.600805, -0.256071)
-mesh = SubResource("SphereMesh_4243r")
-skeleton = NodePath("../..")
-
-[node name="Tronco" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00238524, 0.101318, -0.0865479)
-mesh = SubResource("CapsuleMesh_esla5")
-skeleton = NodePath("../..")
-
-[node name="Pe_esquerdo" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.197615, -0.898682, -0.0865479)
-mesh = SubResource("CylinderMesh_2dygw")
-skeleton = NodePath("../Pe_direito")
-
-[node name="Pe_direito" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202385, -0.898682, -0.0865479)
-mesh = SubResource("CylinderMesh_2dygw")
-skeleton = NodePath("../..")
+[node name="Player Model" parent="." instance=ExtResource("4_l6emr")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_drdsh")
@@ -112,6 +69,6 @@ grow_vertical = 2
 script = ExtResource("3_vvlcw")
 
 [node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.454563, 0)
