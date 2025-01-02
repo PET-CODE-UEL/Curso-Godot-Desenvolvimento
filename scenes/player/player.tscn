@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brnjfmevhvwcy"]
+[gd_scene load_steps=8 format=3 uid="uid://brnjfmevhvwcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qq77i"]
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_drdsh"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/plants/corn.tscn" id="3_ks3wp"]
 [ext_resource type="Script" path="res://scripts/ui/inventory.gd" id="3_vvlcw"]
 [ext_resource type="PackedScene" uid="uid://c5gonk7lrvfi5" path="res://scenes/player/player_model.tscn" id="4_l6emr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7qcy"]
+size = Vector3(2.33863, 4.72286, 3.36939)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 4
@@ -16,7 +19,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386672, 0)
 script = ExtResource("2_y4ix7")
 corn_scene = ExtResource("3_ks3wp")
 
-[node name="Player Model" parent="." instance=ExtResource("4_l6emr")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0243774, -0.221151, -0.30535)
+shape = SubResource("BoxShape3D_j7qcy")
+
+[node name="Player Model" parent="CollisionShape3D" instance=ExtResource("4_l6emr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0243774, 0.221151, 0.30535)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_drdsh")

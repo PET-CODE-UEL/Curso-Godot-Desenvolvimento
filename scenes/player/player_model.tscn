@@ -1,5 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5gonk7lrvfi5"]
+[gd_scene load_steps=6 format=3 uid="uid://c5gonk7lrvfi5"]
 
 [ext_resource type="PackedScene" uid="uid://qky3yibn1p2f" path="res://assets/models/player/player.glb" id="1_pmxdx"]
 
+[sub_resource type="Animation" id="Animation_7fovq"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_o2xac"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Perna esquerda")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat64Array(0, 1, -2.66925e-08, -2.66925e-08, 0.707107, 0.707107)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:Perna direita")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat64Array(0, 1, -2.66925e-08, 2.66925e-08, -0.707107, 0.707107)
+
+[sub_resource type="Animation" id="Animation_a3rdd"]
+resource_name = "Walk"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Perna esquerda")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat64Array(0, 1, -2.66925e-08, -2.66925e-08, 0.707107, 0.707107, 0.5, 1, 0.23921, 0.23921, 0.665416, 0.665416, 1.5, 1, -0.271971, -0.271971, 0.652711, 0.652711, 2, 1, -2.66925e-08, -2.66925e-08, 0.707107, 0.707107)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:Perna direita")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat64Array(0, 1, -2.66925e-08, 2.66925e-08, -0.707107, 0.707107, 0.5, 1, -0.243809, 0.243809, -0.663745, 0.663745, 1.5, 1, 0.245587, -0.245587, -0.663089, 0.663089, 2, 1, -2.66925e-08, 2.66925e-08, -0.707107, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ukh6j"]
+_data = {
+"Idle": SubResource("Animation_7fovq"),
+"RESET": SubResource("Animation_o2xac"),
+"Walk": SubResource("Animation_a3rdd")
+}
+
 [node name="Player Model" instance=ExtResource("1_pmxdx")]
+
+[node name="Skeleton3D" parent="Armação" index="0"]
+bones/2/rotation = Quaternion(2.66925e-08, 2.66925e-08, -0.707107, 0.707107)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(-1.11022e-16, 0.5, -8.38195e-24)
+bones/3/rotation = Quaternion(-2.66925e-08, -2.66925e-08, 0.707107, 0.707107)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(2.66925e-08, -2.66925e-08, 0.707107, 0.707107)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(1.11022e-16, 0.5, -8.38195e-24)
+bones/5/rotation = Quaternion(-2.66925e-08, 2.66925e-08, -0.707107, 0.707107)
+bones/5/scale = Vector3(1, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Armação" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_ukh6j")
+}
