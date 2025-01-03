@@ -1,18 +1,18 @@
-class-definitions-order:
-- tools
-- classnames
-- extends
-- docstrings
-- signals
-- enums
-- consts
-- staticvars
-- exports
-- pubvars
-- prvvars
-- onreadypubvars
-- onreadyprvvars
-- others
+# class-definitions-order:
+# - tools
+# - classnames
+# - extends
+# - docstrings
+# - signals
+# - enums
+# - consts
+# - staticvars
+# - exports
+# - pubvars
+# - prvvars
+# - onreadypubvars
+# - onreadyprvvars
+# - others
 class-load-variable-name: (([A-Z][a-z0-9]*)+|_?[a-z][a-z0-9]*(_[a-z0-9]+)*)
 class-name: ([A-Z][a-z0-9]*)+
 class-variable-name: _?[a-z][a-z0-9]*(_[a-z0-9]+)*

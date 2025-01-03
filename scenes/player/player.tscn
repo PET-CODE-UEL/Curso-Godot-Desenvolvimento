@@ -20,11 +20,11 @@ script = ExtResource("2_y4ix7")
 corn_scene = ExtResource("3_ks3wp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0243774, -0.221151, -0.30535)
+transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0.0290521, -0.221151, -0.286097)
 shape = SubResource("BoxShape3D_j7qcy")
 
 [node name="Player Model" parent="CollisionShape3D" instance=ExtResource("4_l6emr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0243774, 0.221151, 0.30535)
+transform = Transform3D(1, 0, 2.44929e-16, 0, 1, 0, -2.44929e-16, 0, 1, -0.0243774, 0.221151, 0.30535)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_drdsh")
@@ -77,6 +77,12 @@ grow_vertical = 2
 script = ExtResource("3_vvlcw")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0447782, 0.973655, -1.72262)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+[node name="FirstPerson" type="Camera3D" parent="CameraPivot"]
+
+[node name="SecondPerson" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-1, -3.16962e-17, 1.18292e-16, 0, 0.965926, 0.258819, -1.22465e-16, 0.258819, -0.965926, 0, 2, -8)
+
+[node name="ThirdPerson" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2, 8)

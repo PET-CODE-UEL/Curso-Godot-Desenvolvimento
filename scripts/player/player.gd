@@ -1,23 +1,40 @@
 class_name Player
 extends CharacterBody3D
 
+# Movimentação
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+# Movimentação da Câmera
 @export var mouse_sensitivity: Vector2 = Vector2(0.01, 0.01)
-
 var rotation_horizontal: float = 0.0
 var rotation_vertical: float = 0.0
 
+# Câmeras
+enum CameraModes {
+	FIRST_PERSON,
+	SECOND_PERSON,
+	THIRD_PERSON,
+}
+
+var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
+
 @onready var camera_pivot: Node3D = $CameraPivot
-@onready var camera: Camera3D = $CameraPivot/Camera3D
+@onready var first_person: Camera3D = $CameraPivot/FirstPerson
+@onready var second_person: Camera3D = $CameraPivot/SecondPerson
+@onready var third_person: Camera3D = $CameraPivot/ThirdPerson
+
+# Animação
 @onready var animation_tree: AnimationTree = $"CollisionShape3D/Player Model/Armação/AnimationTree"
+
+# Interação
 @onready var inventory = $Inventory
 @onready var ui = $CanvasLayer
 @onready var interacter = $Interacter
 
 
 func _ready():
+	update_camera_mode()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	inventory.connect("inventory_updated", ui.update_corn_amount)
 	interacter.connect("harvested_crop", inventory.add_corn)
@@ -36,6 +53,9 @@ func _input(event):
 		rotation_vertical -= event.relative.y * mouse_sensitivity.y
 		# Limitar a rotation vertical
 		rotation_vertical = clamp(rotation_vertical, deg_to_rad(-90), deg_to_rad(90))
+
+	if event.is_action_pressed("camera_switch"):
+		cycle_camera_mode()
 
 
 func _physics_process(delta: float) -> void:
@@ -66,3 +86,14 @@ func _physics_process(delta: float) -> void:
 func set_walk(value: bool):
 	animation_tree["parameters/conditions/walking"] = value
 	animation_tree["parameters/conditions/idle"] = not value
+
+
+func cycle_camera_mode():
+	var camera_modes := CameraModes.values()
+	current_camera_mode = camera_modes[(int(current_camera_mode) + 1) % camera_modes.size()]
+	update_camera_mode()
+
+func update_camera_mode():
+	first_person.current = (current_camera_mode == CameraModes.FIRST_PERSON)
+	second_person.current = (current_camera_mode == CameraModes.SECOND_PERSON)
+	third_person.current = (current_camera_mode == CameraModes.THIRD_PERSON)
