@@ -89,6 +89,9 @@ bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-2.66925e-08, 2.66925e-08, -0.707107, 0.707107)
 bones/5/scale = Vector3(1, 1, 1)
 
+[node name="Corpo Principal" parent="Armação/Skeleton3D" index="0"]
+extra_cull_margin = 10.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Armação" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_ukh6j")

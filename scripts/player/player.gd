@@ -6,9 +6,9 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 # Movimentação da Câmera
-@export var mouse_sensitivity: Vector2 = Vector2(0.01, 0.01)
-var rotation_horizontal: float = 0.0
-var rotation_vertical: float = 0.0
+@export var mouse_sensitivity := Vector2(0.01, 0.01)
+var rotation_horizontal := 0.0
+var rotation_vertical := 0.0
 
 # Câmeras
 enum CameraModes {
@@ -26,6 +26,8 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 
 # Animação
 @onready var animation_tree: AnimationTree = $"CollisionShape3D/Player Model/Armação/AnimationTree"
+@onready var skeleton: Skeleton3D = $"CollisionShape3D/Player Model/Armação/Skeleton3D"
+@onready var head_bone := skeleton.find_bone("Coluna Superior")
 
 # Interação
 @onready var inventory = $Inventory
@@ -44,14 +46,16 @@ func _ready():
 func _process(_delta):
 	rotation.y = rotation_horizontal
 	camera_pivot.rotation.x = rotation_vertical
-
+	var current_pose := skeleton.get_bone_pose(head_bone)
+	current_pose.basis = Basis.from_euler(Vector3(-rotation_vertical, 0, 0))
+	skeleton.set_bone_pose(head_bone, current_pose)
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		# Atualizar rotations com base no movimento do mouse
+		# Atualiza a rotação com base no movimento do mouse
 		rotation_horizontal -= event.relative.x * mouse_sensitivity.x
 		rotation_vertical -= event.relative.y * mouse_sensitivity.y
-		# Limitar a rotation vertical
+		# Limita a rotação vertical
 		rotation_vertical = clamp(rotation_vertical, deg_to_rad(-90), deg_to_rad(90))
 
 	if event.is_action_pressed("camera_switch"):
