@@ -34,6 +34,9 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 @onready var ui = $CanvasLayer
 @onready var interacter = $Interacter
 
+# Configuração
+var is_game_paused = false
+
 
 func _ready():
 	update_camera_mode()
@@ -44,6 +47,8 @@ func _ready():
 
 
 func _process(_delta):
+	if is_game_paused:
+		return 
 	rotation.y = rotation_horizontal
 	camera_pivot.rotation.x = rotation_vertical
 	var current_pose := skeleton.get_bone_pose(head_bone)
@@ -60,7 +65,20 @@ func _input(event):
 
 	if event.is_action_pressed("camera_switch"):
 		cycle_camera_mode()
+		
+	if event.is_action_pressed("ui_cancel"):
+		if is_game_paused:
+			_resume_game()
+		else:
+			_pause_game()
 
+func _pause_game() -> void:
+	is_game_paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _resume_game() -> void:
+	is_game_paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
