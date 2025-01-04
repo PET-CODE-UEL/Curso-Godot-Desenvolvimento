@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7myempx27gxl"]
+[gd_scene load_steps=4 format=3 uid="uid://7myempx27gxl"]
 
-[ext_resource type="Theme" uid="uid://c8cb1paw5k7xe" path="res://resources/ui_theme.tres" id="1_pye2i"]
+[ext_resource type="Theme" uid="uid://c8cb1paw5k7xe" path="res://resources/menu_theme.tres" id="1_pye2i"]
 [ext_resource type="Texture2D" uid="uid://d0527k6uq5nxy" path="res://assets/background/background.png" id="1_sew5i"]
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="2_yooqa"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pye2i")
+script = ExtResource("2_yooqa")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -21,7 +23,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_sew5i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="DynamicContent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DynamicContent"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,23 +46,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="New Game" type="Button" parent="VBoxContainer"]
+[node name="New Game" type="Button" parent="DynamicContent/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "New Game"
 
-[node name="Load Game" type="Button" parent="VBoxContainer"]
+[node name="Load Game" type="Button" parent="DynamicContent/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Load Game"
 
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="DynamicContent/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options
 "
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="DynamicContent/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
@@ -84,3 +94,8 @@ text = "V 0.1 Alpha"
 layout_mode = 2
 size_flags_horizontal = 10
 text = "PET CODE UEL"
+
+[connection signal="pressed" from="DynamicContent/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="DynamicContent/VBoxContainer/Load Game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="DynamicContent/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="DynamicContent/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
