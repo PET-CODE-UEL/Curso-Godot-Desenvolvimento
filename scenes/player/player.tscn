@@ -23,7 +23,7 @@ corn_scene = ExtResource("3_ks3wp")
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0.0290521, -0.221151, -0.286097)
 shape = SubResource("BoxShape3D_j7qcy")
 
-[node name="Player Model" parent="CollisionShape3D" instance=ExtResource("4_l6emr")]
+[node name="PlayerModel" parent="CollisionShape3D" instance=ExtResource("4_l6emr")]
 transform = Transform3D(1, 0, 2.44929e-16, 0, 1, 0, -2.44929e-16, 0, 1, -0.0243774, 0.221151, 0.30535)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -25,8 +25,8 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 @onready var third_person: Camera3D = $CameraPivot/ThirdPerson
 
 # Animação
-@onready var animation_tree: AnimationTree = $"CollisionShape3D/Player Model/Armação/AnimationTree"
-@onready var skeleton: Skeleton3D = $"CollisionShape3D/Player Model/Armação/Skeleton3D"
+@onready var animation_tree: AnimationTree = $"CollisionShape3D/PlayerModel/Armação/AnimationTree"
+@onready var skeleton: Skeleton3D = $"CollisionShape3D/PlayerModel/Armação/Skeleton3D"
 @onready var head_bone := skeleton.find_bone("Coluna Superior")
 
 # Interação
@@ -101,3 +101,12 @@ func update_camera_mode():
 	first_person.current = (current_camera_mode == CameraModes.FIRST_PERSON)
 	second_person.current = (current_camera_mode == CameraModes.SECOND_PERSON)
 	third_person.current = (current_camera_mode == CameraModes.THIRD_PERSON)
+	toggle_visibility(current_camera_mode == CameraModes.FIRST_PERSON)
+
+func toggle_visibility(is_first_person: bool):
+	for child in skeleton.get_children():
+		if child is MeshInstance3D:
+			if not is_first_person:
+				child.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+			else:
+				child.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY

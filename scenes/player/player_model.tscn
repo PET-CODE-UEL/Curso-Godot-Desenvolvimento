@@ -77,7 +77,7 @@ states/Walk/node = SubResource("AnimationNodeAnimation_uxc24")
 states/Walk/position = Vector2(392, 104)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_xq0fa"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_sgx7b"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gicq2")]
 
-[node name="Player Model" instance=ExtResource("1_pmxdx")]
+[node name="PlayerModel" instance=ExtResource("1_pmxdx")]
 
 [node name="Skeleton3D" parent="Armação" index="0"]
 bones/2/rotation = Quaternion(2.66925e-08, 2.66925e-08, -0.707107, 0.707107)
