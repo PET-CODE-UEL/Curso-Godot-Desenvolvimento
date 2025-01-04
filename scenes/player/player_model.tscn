@@ -24,23 +24,23 @@ tracks/1/keys = PackedFloat64Array(0, 1, -2.66925e-08, 2.66925e-08, -0.707107, 0
 
 [sub_resource type="Animation" id="Animation_a3rdd"]
 resource_name = "Walk"
-length = 1.00005
+length = 0.5
 loop_mode = 2
-step = 0.5
+step = 0.25
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Skeleton3D:Perna esquerda")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat64Array(0, 1, 0.23921, 0.23921, 0.665416, 0.665416, 0.5, 1, -2.66925e-08, -2.66925e-08, 0.707107, 0.707107, 1, 1, -0.271971, -0.271971, 0.652711, 0.652711)
+tracks/0/keys = PackedFloat64Array(0, 1, 0.23921, 0.23921, 0.665416, 0.665416, 0.25, 1, -2.66925e-08, -2.66925e-08, 0.707107, 0.707107, 0.5, 1, -0.271971, -0.271971, 0.652711, 0.652711)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Skeleton3D:Perna direita")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat64Array(0, 1, -0.243809, 0.243809, -0.663745, 0.663745, 0.5, 1, -2.66925e-08, 2.66925e-08, -0.707107, 0.707107, 1, 1, 0.245587, -0.245587, -0.663089, 0.663089)
+tracks/1/keys = PackedFloat64Array(0, 1, -0.243809, 0.243809, -0.663745, 0.663745, 0.25, 1, -2.66925e-08, 2.66925e-08, -0.707107, 0.707107, 0.5, 1, 0.245587, -0.245587, -0.663089, 0.663089)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ukh6j"]
 _data = {
@@ -59,12 +59,14 @@ animation = &"Walk"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sgx7b"]
-break_loop_at_end = true
+reset = false
 switch_mode = 1
 advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gicq2"]
+reset = false
+switch_mode = 1
 advance_mode = 2
 advance_condition = &"walking"
 

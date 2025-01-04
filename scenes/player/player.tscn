@@ -20,7 +20,7 @@ script = ExtResource("2_y4ix7")
 corn_scene = ExtResource("3_ks3wp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0.0290521, -0.221151, -0.286097)
+transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0.0290521, -0.221151, 0.362074)
 shape = SubResource("BoxShape3D_j7qcy")
 
 [node name="PlayerModel" parent="CollisionShape3D" instance=ExtResource("4_l6emr")]
@@ -77,7 +77,7 @@ grow_vertical = 2
 script = ExtResource("3_vvlcw")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0447782, 0.973655, -1.72262)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0447782, 0.973655, -1.07445)
 
 [node name="FirstPerson" type="Camera3D" parent="CameraPivot"]
 
