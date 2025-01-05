@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=8 format=3 uid="uid://difjsubfpsgre"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_arjf6"]
 [ext_resource type="PackedScene" uid="uid://d0i830h3gg5l6" path="res://scenes/terrain/terrain.tscn" id="2_pslca"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player/player.tscn" id="3_lgxfs"]
+[ext_resource type="PackedScene" uid="uid://ccgiwlyxfyqd8" path="res://scenes/ui/pause_menu.tscn" id="4_v3q5l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2sho"]
 sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)
@@ -15,20 +16,27 @@ background_mode = 2
 background_color = Color(0.171351, 0.695055, 1, 1)
 sky = SubResource("Sky_meneh")
 
-[node name="VoxelWorld" type="Node3D"]
+[node name="Main" type="Node"]
 script = ExtResource("1_arjf6")
 
-[node name="Terreno" parent="." instance=ExtResource("2_pslca")]
+[node name="Game" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="Terreno" parent="Game" instance=ExtResource("2_pslca")]
 voxel_bounds = AABB(-5.36871e+08, -5.36871e+08, -5.36871e+08, 1.07374e+09, 1.07374e+09, 1.07374e+09)
 
-[node name="Player" parent="." instance=ExtResource("3_lgxfs")]
+[node name="Player" parent="Game" instance=ExtResource("3_lgxfs")]
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0, 5.33727, 0)
 collision_layer = 8
 
-[node name="Céu" type="WorldEnvironment" parent="."]
+[node name="Céu" type="WorldEnvironment" parent="Game"]
 environment = SubResource("Environment_fdyt0")
 
-[node name="Sol" type="DirectionalLight3D" parent="."]
+[node name="Sol" type="DirectionalLight3D" parent="Game"]
 transform = Transform3D(-4.37114e-08, -0.866025, 0.5, 0, 0.5, 0.866025, -1, 3.78552e-08, -2.18557e-08, 46.6612, 45, 0)
 layers = 0
 shadow_enabled = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_v3q5l")]
+process_mode = 2
+visible = false

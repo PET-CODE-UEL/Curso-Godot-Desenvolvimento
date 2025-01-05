@@ -60,7 +60,12 @@ func _input(event):
 
 	if event.is_action_pressed("camera_switch"):
 		cycle_camera_mode()
+		
+func _pause_game() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+func _resume_game() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

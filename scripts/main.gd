@@ -1,16 +1,29 @@
-extends Node3D
+class_name Main
+extends Node
+
+@onready var pause_menu: Control = $PauseMenu
+@onready var player: Player = $Game/Player
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pause_menu.hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-	
-	pass
-	
-	
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if pause_menu.is_visible():
+			_resume_game()
+		else:
+			_pause_game()
+
+
+func _resume_game() -> void:
+	player._resume_game()
+	pause_menu.hide()
+	get_tree().paused = false
+
+
+func _pause_game() -> void:
+	player._pause_game()
+	pause_menu.show()
+	get_tree().paused = true
