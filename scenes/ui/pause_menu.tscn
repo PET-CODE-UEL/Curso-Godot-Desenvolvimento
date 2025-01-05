@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://ccgiwlyxfyqd8"]
+[gd_scene load_steps=2 format=3 uid="uid://ccgiwlyxfyqd8"]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_doege"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_doege")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -60,3 +63,8 @@ text = "Save and Exit to Menu"
 [node name="DesktopExit" type="Button" parent="Center/Panel/Margin/VBox"]
 layout_mode = 2
 text = "Save and Exit to Desktop"
+
+[connection signal="pressed" from="Center/Panel/Margin/VBox/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Center/Panel/Margin/VBox/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Center/Panel/Margin/VBox/MenuExit" to="." method="_on_menu_exit_pressed"]
+[connection signal="pressed" from="Center/Panel/Margin/VBox/DesktopExit" to="." method="_on_desktop_exit_pressed"]
