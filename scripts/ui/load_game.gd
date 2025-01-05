@@ -1,19 +1,8 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_back_pressed() -> void:
-	pass # Replace with function body.
-
+	var main_menu : MainMenu = get_parent().get_parent()
+	main_menu.set_button_menu(true)
 
 func _on_load_pressed() -> void:
 	pass # Replace with function body.
