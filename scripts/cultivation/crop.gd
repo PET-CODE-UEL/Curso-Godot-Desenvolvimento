@@ -11,6 +11,7 @@ var growth_value = 0.0
 @export var growth_time = 10
 
 var harvestable = false
+var plantation: Node = null
 
 func get_harvest_amount():
 	return harvest_amount

@@ -24,31 +24,41 @@ func _process(_delta):
 		
 		
 func interact():
-	var result = raycast(2)
+	var result = raycast(2) # Camada de colisao 2 -> 010 b = 2 d
 	if result:
-		if result.collider.has_method("interact"):
-			if result.collider.harvestable:
-				emit_signal("harvested_crop", result.collider.get_crop_type(),result.collider.get_harvest_amount())
-				result.collider.interact()
+		if result.collider.get_collision_layer() == 2:
+			var crop = result.collider
+			if crop.harvestable:
+				emit_signal("harvested_crop", crop.get_crop_type(),crop.get_harvest_amount())
+				crop.interact()
+				crop.plantation.occupied = false
+				
 
 func plant():
-	var result = raycast(3)
-	if result.collider.get_collision_layer() == 5 && !result.collider.occupied:
-		print("Raio colidiu com: ", result.collider.get_collision_layer())
-		result.collider.occupied = true
-		var corn_instance = corn_scene.instantiate()
-		get_tree().get_root().add_child(corn_instance)
-		corn_instance.global_transform.origin = result.position
-		corn_instance.rotate_y(randf_range(0.0, TAU))
-		corn_instance.global_scale(Vector3.ONE * randf_range(0.9,1.1))
+	var result = raycast(4) # Camada de colisao 3 -> 100 b = 4 d
+	if result:
+		if result.collider.get_collision_layer() == 4  : # Checa se eh um terreno pra plantar
+			var plantation = result.collider
+			if !plantation.occupied : # Checa se o terreno ja esta ocupado
+				var corn_instance = corn_scene.instantiate()
+				corn_instance.plantation = plantation
+				get_tree().get_root().add_child(corn_instance)
+				 # Calcula o centro do quadrado
+				var center_position = plantation.global_transform.origin
+				corn_instance.global_transform.origin = center_position
+				
+				corn_instance.rotate_y(randf_range(0.0, TAU))
+				corn_instance.global_scale(Vector3.ONE * randf_range(0.9,1.1))
+				plantation.occupied = true # Ocupa terreno
 
 func prepare_ground():
 	var result = raycast(1)
-	if result.collider.get_collision_layer() == 1:
-		print("Raio colidiu com: ", result.collider.get_collision_layer())
-		var plantation_instance = plantation_scene.instantiate()
-		get_tree().get_root().add_child(plantation_instance)
-		plantation_instance.global_transform.origin = result.position
+	if result:
+		if result.collider.get_collision_layer() == 1:
+			print("Raio colidiu com: ", result.collider.get_collision_layer())
+			var plantation_instance = plantation_scene.instantiate()
+			get_tree().get_root().add_child(plantation_instance)
+			plantation_instance.global_transform.origin = result.position
 		
 func raycast(layer: int):
 	var space_state = get_world_3d().get_direct_space_state()
