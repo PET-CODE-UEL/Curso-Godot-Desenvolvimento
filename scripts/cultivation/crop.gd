@@ -1,5 +1,6 @@
 extends StaticBody3D
 
+@export var crop_type: CropTypes.CROP_TYPE
 @export var harvest_amount = 1
 
 @onready var large = $Large
@@ -13,6 +14,9 @@ var harvestable = false
 
 func get_harvest_amount():
 	return harvest_amount
+	
+func get_crop_type():
+	return crop_type
 
 func interact():
 	if harvestable:

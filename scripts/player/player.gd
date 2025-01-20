@@ -29,7 +29,7 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 @onready var skeleton: Skeleton3D = $"CollisionShape3D/PlayerModel/Armação/Skeleton3D"
 @onready var head_bone := skeleton.find_bone("Coluna Superior")
 
-# Interação
+#----------------------------- Interação -------------------------------------------
 @onready var inventory = $Inventory
 @onready var ui = $CanvasLayer
 @onready var interacter = $Interacter
@@ -38,10 +38,11 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 func _ready():
 	update_camera_mode()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	inventory.connect("inventory_updated", ui.update_corn_amount)
-	interacter.connect("harvested_crop", inventory.add_corn)
+	inventory.connect("inventory_updated", ui.update_crop_amount)
+	interacter.connect("harvested_crop", inventory.add_crop)
 	interacter.connect("update_prompt_text", ui.update_prompt_text)
 
+#------------------------------------------------------------------------------------
 
 func _process(_delta):
 	rotation.y = rotation_horizontal

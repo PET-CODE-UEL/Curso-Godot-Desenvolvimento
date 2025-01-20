@@ -1,23 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://brnjfmevhvwcy"]
+[gd_scene load_steps=9 format=3 uid="uid://brnjfmevhvwcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qq77i"]
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_drdsh"]
 [ext_resource type="Script" path="res://scripts/cultivation/interacter.gd" id="2_y4ix7"]
 [ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/plants/corn.tscn" id="3_ks3wp"]
 [ext_resource type="Script" path="res://scripts/ui/inventory.gd" id="3_vvlcw"]
+[ext_resource type="PackedScene" uid="uid://xt5alnos77b1" path="res://scenes/plants/plantation.tscn" id="4_jnjb2"]
 [ext_resource type="PackedScene" uid="uid://c5gonk7lrvfi5" path="res://scenes/player/player_model.tscn" id="4_l6emr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7qcy"]
 size = Vector3(2.33863, 4.72286, 3.36939)
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 4
+collision_layer = 8
 script = ExtResource("1_qq77i")
 
 [node name="Interacter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386672, 0)
 script = ExtResource("2_y4ix7")
 corn_scene = ExtResource("3_ks3wp")
+plantation_scene = ExtResource("4_jnjb2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0.0290521, -0.221151, 0.362074)
@@ -41,6 +43,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
+text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -50,13 +53,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = 47.0
-offset_right = 19.0
-offset_bottom = 70.0
+offset_left = 80.0
+offset_top = -12.0
+offset_right = 120.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
+text = "receba"
 horizontal_alignment = 1
 vertical_alignment = 2
 
