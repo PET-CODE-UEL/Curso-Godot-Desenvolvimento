@@ -1,5 +1,7 @@
 extends Node3D
 
+# INVENTARIO BASICAO SO PRA TESTAR SE ESTA COLHENDO MILHOS
+
 var corn_amount = 0
 signal inventory_updated
 

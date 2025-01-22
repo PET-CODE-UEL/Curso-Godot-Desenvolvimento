@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=9 format=3 uid="uid://difjsubfpsgre"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_arjf6"]
 [ext_resource type="PackedScene" uid="uid://d0i830h3gg5l6" path="res://scenes/terrain/terrain.tscn" id="2_pslca"]
+[ext_resource type="Script" path="res://scenes/terrain/terrain.gd" id="3_jlbe3"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player/player.tscn" id="3_lgxfs"]
 [ext_resource type="PackedScene" uid="uid://ccgiwlyxfyqd8" path="res://scenes/ui/pause_menu.tscn" id="4_v3q5l"]
 
@@ -24,6 +25,7 @@ process_mode = 1
 
 [node name="Terreno" parent="Game" instance=ExtResource("2_pslca")]
 voxel_bounds = AABB(-5.36871e+08, -5.36871e+08, -5.36871e+08, 1.07374e+09, 1.07374e+09, 1.07374e+09)
+script = ExtResource("3_jlbe3")
 
 [node name="Player" parent="Game" instance=ExtResource("3_lgxfs")]
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0, 5.33727, 0)
