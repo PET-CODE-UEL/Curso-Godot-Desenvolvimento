@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://1hrg4rl5ttr2"]
 
 [ext_resource type="Texture2D" uid="uid://gupex6eqlj1g" path="res://assets/icons/test_item.png" id="1_fbqvw"]
-[ext_resource type="Script" path="res://scripts/ui/item_slot.gd" id="2_0223x"]
+[ext_resource type="Script" path="res://scripts/ui/inventory/item_slot.gd" id="2_g04c4"]
 
 [node name="ItemSlot" type="TextureButton"]
 anchors_preset = 8
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("1_fbqvw")
-script = ExtResource("2_0223x")
+script = ExtResource("2_g04c4")
 
 [node name="ItemQuantity" type="Label" parent="."]
 layout_mode = 1
