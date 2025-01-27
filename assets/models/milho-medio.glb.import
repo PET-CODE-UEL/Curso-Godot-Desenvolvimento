@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://di82bnnty6ho8"
-path="res://.godot/imported/lowpoly_vp_corn_medium.glb-e7ce85a15d4bae56b8894b24bc5230d5.scn"
+path="res://.godot/imported/milho-medio.glb-81cf4a6267de6bac73fa6b8cdd4fc886.scn"
 
 [deps]
 
-source_file="res://assets/models/lowpoly_vp_corn_medium.glb"
-dest_files=["res://.godot/imported/lowpoly_vp_corn_medium.glb-e7ce85a15d4bae56b8894b24bc5230d5.scn"]
+source_file="res://assets/models/milho-medio.glb"
+dest_files=["res://.godot/imported/milho-medio.glb-81cf4a6267de6bac73fa6b8cdd4fc886.scn"]
 
 [params]
 

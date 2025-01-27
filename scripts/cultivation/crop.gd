@@ -9,7 +9,7 @@ extends StaticBody3D
 @onready var small = $Small
 # VALUE EH O MOMENTO ATUAL DA PLANTA E TIME E O TEMPO TOTAL QUE LEVA PARA CRESCER
 var growth_value = 0.0
-var growth_time = 20
+var growth_time = 30
 
 var watered = false # CHECA SE JA FOI REGADA HOJE
 var harvestable = false # CHECA SE JA PODE COLHER

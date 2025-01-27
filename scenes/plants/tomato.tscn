@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dac7sxoy38h1c"]
+
+[ext_resource type="Script" path="res://scripts/cultivation/crop.gd" id="1_4f4f5"]
+[ext_resource type="PackedScene" uid="uid://dx24ea6wfsbyf" path="res://assets/models/tomate-alto.glb" id="2_w5x0u"]
+[ext_resource type="PackedScene" uid="uid://c6joabnpeoe16" path="res://assets/models/tomate-medio.glb" id="3_m0svd"]
+[ext_resource type="PackedScene" uid="uid://c32j27caebph0" path="res://assets/models/tomate-baixo1.glb" id="4_mlvas"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8x5rn"]
+radius = 0.102479
+height = 0.997103
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n8aja"]
+radius = 0.102479
+height = 0.776407
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_00n02"]
+radius = 0.101633
+height = 0.307257
+
+[node name="Tomato" type="StaticBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_layer = 2
+script = ExtResource("1_4f4f5")
+
+[node name="Large" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.365799, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_8x5rn")
+
+[node name="tomate-alto" parent="Large" instance=ExtResource("2_w5x0u")]
+transform = Transform3D(0.15, 0, 0, 0, 9.18485e-18, -0.15, 0, 0.15, 9.18485e-18, 0, 0, 0)
+
+[node name="Medium" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157144, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_n8aja")
+
+[node name="tomate-medio" parent="Medium" instance=ExtResource("3_m0svd")]
+transform = Transform3D(0.1, 0, 0, 0, 6.12323e-18, -0.1, 0, 0.1, 6.12323e-18, 0, 0, 0)
+
+[node name="Small" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00396192, 0)
+shape = SubResource("CapsuleShape3D_00n02")
+
+[node name="tomate-baixo1" parent="Small" instance=ExtResource("4_mlvas")]
+transform = Transform3D(0.1, 0, 0, 0, 6.12323e-18, -0.1, 0, 0.1, 6.12323e-18, 0, 0, 0)
