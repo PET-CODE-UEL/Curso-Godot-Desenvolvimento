@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cammby2b0x08p"]
+[gd_scene load_steps=3 format=3 uid="uid://cammby2b0x08p"]
 
 [ext_resource type="Script" path="res://scripts/ui/inventory/inventory.gd" id="1_g5ibg"]
+[ext_resource type="PackedScene" uid="uid://1hrg4rl5ttr2" path="res://scenes/ui/inventory/item_slot.tscn" id="2_tp7j2"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g5ibg")
+slot_scene = ExtResource("2_tp7j2")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
