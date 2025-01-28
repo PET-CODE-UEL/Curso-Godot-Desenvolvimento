@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnnv0dwcmcbf3"]
+[gd_scene load_steps=3 format=3 uid="uid://kpvw44fo28gr"]
 
 [ext_resource type="Script" path="res://scripts/ui/inventory/hotbar.gd" id="1_pg4bj"]
+[ext_resource type="PackedScene" uid="uid://1hrg4rl5ttr2" path="res://scenes/ui/inventory/item_slot.tscn" id="2_7mylg"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -14,4 +15,5 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_pg4bj")
+slot_scene = ExtResource("2_7mylg")
 metadata/_edit_use_anchors_ = true
