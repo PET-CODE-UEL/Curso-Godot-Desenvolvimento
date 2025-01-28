@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cammby2b0x08p"]
+[gd_scene load_steps=2 format=3 uid="uid://cammby2b0x08p"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory/inventory.gd" id="1_g5ibg"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g5ibg")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -48,27 +51,13 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Backpack" type="ItemList" parent="Margin/Panel/Margin/VBox"]
+[node name="InventoryGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
-allow_reselect = true
-allow_rmb_select = true
-allow_search = false
-auto_height = true
-max_columns = 9
-fixed_column_width = 64
-icon_mode = 0
-fixed_icon_size = Vector2i(64, 64)
+columns = 9
 
-[node name="Hotbar" type="ItemList" parent="Margin/Panel/Margin/VBox"]
+[node name="Hotbar" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-allow_reselect = true
-allow_rmb_select = true
-allow_search = false
-auto_height = true
-max_columns = 9
-fixed_column_width = 64
-icon_mode = 0
-fixed_icon_size = Vector2i(64, 64)
+columns = 9
