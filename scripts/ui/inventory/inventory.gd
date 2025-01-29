@@ -1,15 +1,12 @@
 extends Control
 
 @export var slot_scene: PackedScene
-@onready var hotbar = $Margin/Panel/Margin/VBox/Hotbar
+@onready var hotbar_grid = $Margin/Panel/Margin/VBox/HotbarGrid
 @onready var inventory_grid = $Margin/Panel/Margin/VBox/InventoryGrid
-
 
 func _ready():
 	initialize_ui()
-	InventoryManager.inventory_updated.connect(refresh_inventory_ui)
-	InventoryManager.hotbar_updated.connect(refresh_hotbar_ui)
-
+	InventoryManager.inventory_updated.connect(refresh_ui)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -19,51 +16,35 @@ func _input(event: InputEvent) -> void:
 		elif event.pressed and event.keycode == KEY_L:
 			InventoryManager.remove_item_from_inventory("Espada", 1)
 
-
 # Inicializa a interface com os slots
 func initialize_ui():
-	clear_children(hotbar)
+	clear_children(hotbar_grid)
 	clear_children(inventory_grid)
-
-	# Cria os slots da hotbar
-	for i in range(InventoryManager.HOTBAR_SIZE):
-		var slot = slot_scene.instantiate()
-		hotbar.add_child(slot)
 
 	# Cria os slots do inventário
 	for i in range(InventoryManager.INVENTORY_SIZE):
 		var slot = slot_scene.instantiate()
 		inventory_grid.add_child(slot)
 
-	# Atualiza os dados dos slots após a inicialização
-	refresh_inventory_ui()
-	refresh_hotbar_ui()
+	# Cria os slots da hotbar_grid
+	for i in range(InventoryManager.HOTBAR_SIZE):
+		var slot = slot_scene.instantiate()
+		hotbar_grid.add_child(slot)
 
+	# Atualiza os dados dos slots após a inicialização
+	refresh_ui()
 
 # Atualiza todos os slots na UI
-func refresh_inventory_ui():
+func refresh_ui():
 	for i in range(InventoryManager.INVENTORY_SIZE):
 		var slot = inventory_grid.get_child(i)
-		slot.set_item(InventoryManager.get_inventory_item(i))
+		var item = InventoryManager.get_inventory_item(i)
+		slot.set_item(item)
 
-func refresh_hotbar_ui():
 	for i in range(InventoryManager.HOTBAR_SIZE):
-		var slot = hotbar.get_child(i)
-		slot.set_item(InventoryManager.get_hotbar_item(i))
-
-# Atualiza um único slot no inventário
-func refresh_inventory_slot(slot_index: int):
-	if slot_index >= 0 and slot_index < InventoryManager.INVENTORY_SIZE:
-		var slot = inventory_grid.get_child(slot_index)
-		slot.set_item(InventoryManager.get_inventory_item(slot_index))
-
-
-# Atualiza um único slot da hotbar
-func refresh_hotbar_slot(slot_index: int):
-	if slot_index >= 0 and slot_index < InventoryManager.HOTBAR_SIZE:
-		var slot = hotbar.get_child(slot_index)
-		slot.set_item(InventoryManager.get_hotbar_item(slot_index))
-
+		var slot = hotbar_grid.get_child(i)
+		var item = InventoryManager.get_hotbar_item(i)
+		slot.set_item(item)
 
 # Remove todos os filhos de um nó
 func clear_children(node: Node):
