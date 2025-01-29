@@ -1,22 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://1hrg4rl5ttr2"]
+[gd_scene load_steps=2 format=3 uid="uid://1hrg4rl5ttr2"]
 
-[ext_resource type="Texture2D" uid="uid://gupex6eqlj1g" path="res://assets/icons/test_item.png" id="1_fbqvw"]
 [ext_resource type="Script" path="res://scripts/ui/inventory/item_slot.gd" id="2_g04c4"]
 
 [node name="ItemSlot" type="TextureButton"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_left = 0.472
+anchor_top = 0.451
+anchor_right = 0.528
+anchor_bottom = 0.549
+offset_left = 0.256
+offset_top = -0.248
+offset_right = -0.256
+offset_bottom = 0.248
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("1_fbqvw")
 script = ExtResource("2_g04c4")
 
 [node name="ItemQuantity" type="Label" parent="."]

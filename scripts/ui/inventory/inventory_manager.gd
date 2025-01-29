@@ -7,8 +7,7 @@ var inventory_items : Array[Item] = []
 var hotbar_items : Array[Item] = []
 
 
-func initialize_inventory():
-	inventory_items = []
+func _init():
 	for i in range(INVENTORY_SIZE):
 		inventory_items.append(null)
 	for i in range(HOTBAR_SIZE):
