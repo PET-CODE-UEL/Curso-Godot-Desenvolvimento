@@ -1,5 +1,9 @@
 extends Node
 
+
+signal inventory_updated  # Emite quando o inventário for alterado
+signal hotbar_updated     # Emite quando a hotbar for alterada
+
 # Armazena os itens da hotbar e do inventário
 const INVENTORY_SIZE := 27
 const HOTBAR_SIZE := 9
@@ -81,12 +85,14 @@ func add_item_to_inventory(new_item: Item) -> bool:
 			existing_item.quantity += quantity_to_add
 			new_item.quantity -= quantity_to_add
 			if new_item.quantity <= 0:
+				emit_signal("inventory_updated")
 				return true  # Todo o item foi adicionado
 
 	# Caso não tenha espaço para empilhar, tenta encontrar um slot vazio
 	for i in range(inventory_items.size()):
 		if inventory_items[i] == null:
 			inventory_items[i] = new_item.clone()
+			emit_signal("inventory_updated")
 			return true  # Item adicionado em um slot vazio
 
 	return false  # Inventário cheio
@@ -101,6 +107,7 @@ func remove_item_from_inventory(item_name: String, quantity: int) -> bool:
 				existing_item.quantity -= quantity
 				if existing_item.quantity == 0:
 					inventory_items[i] = null  # Remove o slot se a quantidade chegar a 0
+				emit_signal("inventory_updated")
 				return true  # Quantidade removida com sucesso
 			quantity -= existing_item.quantity
 			inventory_items[i] = null  # Remove o slot
