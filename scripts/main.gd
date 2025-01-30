@@ -18,12 +18,12 @@ func _input(event):
 
 
 func _resume_game() -> void:
-	player._resume_game()
+	player.resume_game()
 	pause_menu.hide()
 	get_tree().paused = false
 
 
 func _pause_game() -> void:
-	player._pause_game()
+	player.pause_game()
 	pause_menu.show()
 	get_tree().paused = true

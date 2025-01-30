@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://7myempx27gxl"]
 
-[ext_resource type="Theme" uid="uid://c8cb1paw5k7xe" path="res://resources/menu_theme.tres" id="1_pye2i"]
+[ext_resource type="Theme" uid="uid://c8cb1paw5k7xe" path="res://resources/themes/menu_theme.tres" id="1_pye2i"]
 [ext_resource type="Texture2D" uid="uid://d0527k6uq5nxy" path="res://assets/background/background.png" id="1_sew5i"]
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="2_yooqa"]
 [ext_resource type="PackedScene" uid="uid://xlmqh35mf3qv" path="res://scenes/ui/load_game.tscn" id="4_rem1r"]

@@ -29,17 +29,19 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 @onready var skeleton: Skeleton3D = $"CollisionShape3D/PlayerModel/Armação/Skeleton3D"
 @onready var head_bone := skeleton.find_bone("Coluna Superior")
 
+# Inventário
+@onready var inventory_ui: Control = $Inventory
+var inventory_open = false
+
 #----------------------------- Interação -------------------------------------------
-@onready var inventory = $Inventory
 @onready var ui = $CanvasLayer
 @onready var interacter = $Interacter
 
 
 func _ready():
+	inventory_ui.hide()	
 	update_camera_mode()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	inventory.connect("inventory_updated", ui.update_crop_amount)
-	interacter.connect("harvested_crop", inventory.add_crop)
 	interacter.connect("update_prompt_text", ui.update_prompt_text)
 
 #------------------------------------------------------------------------------------
@@ -52,21 +54,17 @@ func _process(_delta):
 	skeleton.set_bone_pose(head_bone, current_pose)
 
 func _input(event):
-	if event is InputEventMouseMotion:
-		# Atualiza a rotação com base no movimento do mouse
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotation_horizontal -= event.relative.x * mouse_sensitivity.x
 		rotation_vertical -= event.relative.y * mouse_sensitivity.y
-		# Limita a rotação vertical
 		rotation_vertical = clamp(rotation_vertical, deg_to_rad(-90), deg_to_rad(90))
 
 	if event.is_action_pressed("camera_switch"):
 		cycle_camera_mode()
-		
-func _pause_game() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _resume_game() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action_pressed("inventory_toggle"):
+		toggle_inventory()
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -92,6 +90,20 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func pause_game() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func resume_game() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func toggle_inventory():
+	inventory_open = !inventory_open
+	inventory_ui.visible = inventory_open
+
+	if inventory_open:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func set_walk(value: bool):
 	animation_tree["parameters/conditions/walking"] = value
