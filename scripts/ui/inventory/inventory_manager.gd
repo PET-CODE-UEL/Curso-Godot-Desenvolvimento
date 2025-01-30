@@ -32,6 +32,7 @@ func set_inventory_item(slot_index: int, item: Item):
 	var col = slot_index % COLUMNS
 	if row >= 0 and row < ROWS and col >= 0 and col < COLUMNS:
 		inventory_items[row].slots[col] = item
+		inventory_updated.emit()
 
 func get_hotbar_item(index: int) -> Item:
 	if index >= 0 and index < HOTBAR_SIZE:
@@ -41,6 +42,7 @@ func get_hotbar_item(index: int) -> Item:
 func set_hotbar_item(index: int, item: Item):
 	if index >= 0 and index < HOTBAR_SIZE:
 		inventory_items[ROWS - 1].slots[index] = item
+		inventory_updated.emit()
 
 # Função para salvar o inventário
 func save() -> Dictionary:

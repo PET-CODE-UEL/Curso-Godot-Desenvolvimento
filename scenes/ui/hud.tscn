@@ -1,19 +1,41 @@
 [gd_scene load_steps=3 format=3 uid="uid://kpvw44fo28gr"]
 
 [ext_resource type="Script" path="res://scripts/ui/inventory/hotbar.gd" id="1_pg4bj"]
-[ext_resource type="PackedScene" uid="uid://1hrg4rl5ttr2" path="res://scenes/ui/inventory/item_slot.tscn" id="2_7mylg"]
+[ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="2_7mylg"]
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="Hotbar" type="GridContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
 anchors_preset = -1
-anchor_top = 0.851852
+anchor_top = 0.83
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 90.16
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="Overlay" type="ColorRect" parent="Margin"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.376471)
+
+[node name="Margin" type="MarginContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Hotbar" type="GridContainer" parent="Margin/Margin"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 9
 script = ExtResource("1_pg4bj")
 slot_scene = ExtResource("2_7mylg")
 metadata/_edit_use_anchors_ = true
