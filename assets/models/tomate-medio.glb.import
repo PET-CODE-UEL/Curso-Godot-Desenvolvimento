@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cqnqxckqjkh4s"
-path="res://.godot/imported/lowpoly_vp_corn_large.glb-f7b4cd3c70757279f45347fe84550055.scn"
+uid="uid://c6joabnpeoe16"
+path="res://.godot/imported/tomate-medio.glb-1572d6d303811bdec4f52db5543efc57.scn"
 
 [deps]
 
-source_file="res://assets/models/lowpoly_vp_corn_large.glb"
-dest_files=["res://.godot/imported/lowpoly_vp_corn_large.glb-f7b4cd3c70757279f45347fe84550055.scn"]
+source_file="res://assets/models/tomate-medio.glb"
+dest_files=["res://.godot/imported/tomate-medio.glb-1572d6d303811bdec4f52db5543efc57.scn"]
 
 [params]
 

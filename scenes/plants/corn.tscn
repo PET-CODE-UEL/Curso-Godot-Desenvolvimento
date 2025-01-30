@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bffrheonunwf6"]
 
 [ext_resource type="Script" path="res://scripts/cultivation/crop.gd" id="1_1qt1c"]
-[ext_resource type="PackedScene" uid="uid://cqnqxckqjkh4s" path="res://assets/models/lowpoly_vp_corn_large.glb" id="2_bfm75"]
-[ext_resource type="PackedScene" uid="uid://di82bnnty6ho8" path="res://assets/models/lowpoly_vp_corn_medium.glb" id="3_qh12a"]
-[ext_resource type="PackedScene" uid="uid://7ign60uimu3n" path="res://assets/models/lowpoly_vp_corn_small.glb" id="4_16yin"]
+[ext_resource type="PackedScene" uid="uid://cqnqxckqjkh4s" path="res://assets/models/milho-alto.glb" id="2_bfm75"]
+[ext_resource type="PackedScene" uid="uid://di82bnnty6ho8" path="res://assets/models/milho-medio.glb" id="3_qh12a"]
+[ext_resource type="PackedScene" uid="uid://7ign60uimu3n" path="res://assets/models/milho-baixo.glb" id="4_16yin"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8x5rn"]
 radius = 0.102479
@@ -27,7 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955381, 0)
 visible = false
 shape = SubResource("CapsuleShape3D_8x5rn")
 
-[node name="lowpoly_vp_corn_large" parent="Large" instance=ExtResource("2_bfm75")]
+[node name="milho-alto" parent="Large" instance=ExtResource("2_bfm75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.955, 0)
 
 [node name="Medium" type="CollisionShape3D" parent="."]
@@ -35,12 +35,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.293508, 0)
 visible = false
 shape = SubResource("CapsuleShape3D_n8aja")
 
-[node name="lowpoly_vp_corn_medium" parent="Medium" instance=ExtResource("3_qh12a")]
+[node name="milho-medio" parent="Medium" instance=ExtResource("3_qh12a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.294, 0)
 
 [node name="Small" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0569615, 0)
 shape = SubResource("CapsuleShape3D_00n02")
 
-[node name="lowpoly_vp_corn_small" parent="Small" instance=ExtResource("4_16yin")]
+[node name="milho-baixo" parent="Small" instance=ExtResource("4_16yin")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057, 0)
