@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cammby2b0x08p"]
 
 [ext_resource type="Script" path="res://scripts/ui/inventory/inventory.gd" id="1_g5ibg"]
-[ext_resource type="PackedScene" uid="uid://1hrg4rl5ttr2" path="res://scenes/ui/inventory/item_slot.tscn" id="2_tp7j2"]
+[ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="2_tp7j2"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -57,9 +57,121 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 9
+
+[node name="ItemSlot" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot2" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot3" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot4" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot5" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot6" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot7" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot8" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot9" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot10" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot11" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot12" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot13" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot14" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot15" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot16" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot17" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot18" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot19" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot20" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot21" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot22" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot23" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot24" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot25" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot26" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot27" parent="Margin/Panel/Margin/VBox/InventoryGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
 
 [node name="HotbarGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 9
+
+[node name="ItemSlot" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot2" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot3" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot4" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot5" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot6" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot7" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot8" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
+
+[node name="ItemSlot9" parent="Margin/Panel/Margin/VBox/HotbarGrid" instance=ExtResource("2_tp7j2")]
+layout_mode = 2
