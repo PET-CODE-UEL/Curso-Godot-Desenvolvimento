@@ -1,22 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=8 format=3 uid="uid://difjsubfpsgre"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_arjf6"]
 [ext_resource type="PackedScene" uid="uid://d0i830h3gg5l6" path="res://scenes/terrain/terrain.tscn" id="2_pslca"]
 [ext_resource type="Script" path="res://scenes/terrain/terrain.gd" id="3_jlbe3"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player/player.tscn" id="3_lgxfs"]
 [ext_resource type="PackedScene" uid="uid://ccgiwlyxfyqd8" path="res://scenes/ui/pause_menu.tscn" id="4_v3q5l"]
-[ext_resource type="PackedScene" uid="uid://kpvw44fo28gr" path="res://scenes/ui/hud.tscn" id="6_umggq"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2sho"]
-sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)
-
-[sub_resource type="Sky" id="Sky_meneh"]
-sky_material = SubResource("ProceduralSkyMaterial_y2sho")
-
-[sub_resource type="Environment" id="Environment_fdyt0"]
-background_mode = 2
-background_color = Color(0.171351, 0.695055, 1, 1)
-sky = SubResource("Sky_meneh")
+[ext_resource type="PackedScene" uid="uid://dn5dcq7yja8xw" path="res://scenes/terrain/sky.tscn" id="5_aouuo"]
+[ext_resource type="PackedScene" uid="uid://dh47wok31jfx0" path="res://scenes/ui/hud.tscn" id="6_umggq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_arjf6")
@@ -31,13 +21,7 @@ script = ExtResource("3_jlbe3")
 [node name="Player" parent="Game" instance=ExtResource("3_lgxfs")]
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0, 5.33727, 0)
 
-[node name="Céu" type="WorldEnvironment" parent="Game"]
-environment = SubResource("Environment_fdyt0")
-
-[node name="Sol" type="DirectionalLight3D" parent="Game"]
-transform = Transform3D(-4.37114e-08, -0.866025, 0.5, 0, 0.5, 0.866025, -1, 3.78552e-08, -2.18557e-08, 46.6612, 45, 0)
-layers = 0
-shadow_enabled = true
+[node name="Sky" parent="Game" instance=ExtResource("5_aouuo")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_v3q5l")]
 process_mode = 2
