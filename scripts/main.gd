@@ -11,7 +11,9 @@ func _ready() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		if pause_menu.is_visible():
+		if player.inventory_open:
+			player.toggle_inventory()
+		elif pause_menu.is_visible():
 			_resume_game()
 		else:
 			_pause_game()
