@@ -44,6 +44,18 @@ func set_hotbar_item(index: int, item: Item):
 		inventory_items[ROWS - 1].slots[index] = item
 		inventory_updated.emit()
 
+func swap_items(src_index, dst_index):
+	var src_item = get_inventory_item(src_index)
+	var src_row = floor(src_index / float(COLUMNS))
+	var src_col = src_index % COLUMNS
+	var dst_item = get_inventory_item(dst_index)
+	var dst_row = floor(dst_index / float(COLUMNS))
+	var dst_col = dst_index % COLUMNS
+	if src_item != null or dst_item != null:
+		inventory_items[dst_row].slots[dst_col] = src_item
+		inventory_items[src_row].slots[src_col] = dst_item
+		inventory_updated.emit()
+
 # Função para salvar o inventário
 func save() -> Dictionary:
 	var inventory_data := {}

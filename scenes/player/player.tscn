@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bffrheonunwf6" path="res://scenes/plants/corn.tscn" id="3_ks3wp"]
 [ext_resource type="PackedScene" uid="uid://xt5alnos77b1" path="res://scenes/plants/plantation.tscn" id="4_jnjb2"]
 [ext_resource type="PackedScene" uid="uid://c5gonk7lrvfi5" path="res://scenes/player/player_model.tscn" id="4_l6emr"]
-[ext_resource type="PackedScene" uid="uid://dac7sxoy38h1c" path="res://scenes/plants/tomato.tscn" id="4_v0ukv"]
+[ext_resource type="PackedScene" path="res://scenes/plants/tomato.tscn" id="4_v0ukv"]
 [ext_resource type="PackedScene" uid="uid://cammby2b0x08p" path="res://scenes/ui/inventory/inventory.tscn" id="7_k12yv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7qcy"]

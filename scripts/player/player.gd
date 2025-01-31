@@ -39,7 +39,7 @@ var inventory_open = false
 
 
 func _ready():
-	inventory_ui.hide()	
+	inventory_ui.hide()
 	update_camera_mode()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	interacter.connect("update_prompt_text", ui.update_prompt_text)

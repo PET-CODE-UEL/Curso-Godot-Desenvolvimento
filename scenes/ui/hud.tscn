@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://kpvw44fo28gr"]
+[gd_scene load_steps=3 format=3 uid="uid://dh47wok31jfx0"]
 
 [ext_resource type="Script" path="res://scripts/ui/inventory/hotbar.gd" id="1_pg4bj"]
 [ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="2_7mylg"]
