@@ -52,3 +52,17 @@ func sell_item(item: Item) -> bool:
 		add_money(item.price)
 		return true
 	return false
+
+func get_shop_item(slot_index: int) -> Item:
+	var row = Utils.get_row(slot_index, COLUMNS)
+	var col = Utils.get_col(slot_index, COLUMNS)
+	if row >= 0 and row < ROWS and col >= 0 and col < COLUMNS:
+		return shop_items[row].slots[col]
+	return null
+
+func set_shop_item(slot_index: int, item: Item):
+	var row = Utils.get_row(slot_index, COLUMNS)
+	var col = Utils.get_col(slot_index, COLUMNS)
+	if row >= 0 and row < ROWS and col >= 0 and col < COLUMNS:
+		shop_items[row].slots[col] = item
+		shop_updated.emit()
