@@ -1,0 +1,41 @@
+extends Control
+
+@onready var player_inventory_grid: GridContainer = $Margin/Panel/Margin/VBox/PlayerInventoryGrid
+@onready var shop_inventory_grid: GridContainer = $Margin/Panel/Margin/VBox/ShopGrid
+@export var slot_scene: PackedScene
+
+func _ready():
+    initialize_ui()
+    InventoryManager.inventory_updated.connect(refresh_ui)
+    ShopManager.shop_updated.connect(refresh_ui)
+
+func initialize_ui():
+    clear_children(player_inventory_grid)
+    clear_children(shop_inventory_grid)
+
+    for i in range(InventoryManager.INVENTORY_SIZE + InventoryManager.HOTBAR_SIZE):
+        var slot = slot_scene.instantiate()
+        slot.slot_index = i
+        player_inventory_grid.add_child(slot)
+
+    for i in range(ShopManager.SHOP_SIZE):
+        var slot = slot_scene.instantiate()
+        slot.slot_index = i
+        shop_inventory_grid.add_child(slot)
+
+    refresh_ui()
+
+func refresh_ui():
+    for i in range(InventoryManager.INVENTORY_SIZE + InventoryManager.HOTBAR_SIZE):
+        var slot = player_inventory_grid.get_child(i)
+        var item = InventoryManager.get_item(i)
+        slot.set_item(item)
+
+    for i in range(ShopManager.SHOP_SIZE):
+        var slot = shop_inventory_grid.get_child(i)
+        var item = ShopManager.get_item(i)
+        slot.set_item(item)
+
+func clear_children(node: Node):
+    for child in node.get_children():
+        child.queue_free()
