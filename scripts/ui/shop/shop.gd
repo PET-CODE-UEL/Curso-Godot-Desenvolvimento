@@ -1,14 +1,15 @@
 extends Control
 
+@export var slot_scene: PackedScene
 @onready var player_inventory_grid: GridContainer = $Margin/Panel/Margin/VBox/PlayerInventoryGrid
 @onready var shop_inventory_grid: GridContainer = $Margin/Panel/Margin/VBox/ShopGrid
-@export var slot_scene: PackedScene
 
 func _ready():
 	initialize_ui()
 	InventoryManager.inventory_updated.connect(refresh_ui)
 	ShopManager.shop_updated.connect(refresh_ui)
 
+# Inicializa a interface com os slots
 func initialize_ui():
 	clear_children(player_inventory_grid)
 	clear_children(shop_inventory_grid)
@@ -25,17 +26,19 @@ func initialize_ui():
 
 	refresh_ui()
 
+# Atualiza todos os slots na UI
 func refresh_ui():
 	for i in range(InventoryManager.INVENTORY_SIZE + InventoryManager.HOTBAR_SIZE):
 		var slot = player_inventory_grid.get_child(i)
-		var item = InventoryManager.get_item(i)
+		var item = InventoryManager.get_inventory_item(i)
 		slot.set_item(item)
 
 	for i in range(ShopManager.SHOP_SIZE):
 		var slot = shop_inventory_grid.get_child(i)
-		var item = ShopManager.get_item(i)
+		var item = ShopManager.get_inventory_item(i)
 		slot.set_item(item)
 
+# Remove todos os filhos de um nó
 func clear_children(node: Node):
 	for child in node.get_children():
 		child.queue_free()

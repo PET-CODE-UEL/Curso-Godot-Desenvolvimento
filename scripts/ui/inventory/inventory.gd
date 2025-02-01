@@ -9,6 +9,7 @@ func _ready():
 	InventoryManager.inventory_updated.connect(refresh_ui)
 
 func _input(event: InputEvent) -> void:
+	# CODIGO TESTE REMOVER POSTERIORMENTE
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_K:
 			var item: Item = load("res://resources/items/espada.tres")
