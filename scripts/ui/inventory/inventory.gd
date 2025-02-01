@@ -26,12 +26,14 @@ func initialize_ui():
 	for i in range(InventoryManager.INVENTORY_SIZE):
 		var slot = slot_scene.instantiate()
 		slot.slot_index = i
+		slot.add_to_group("inventory_slots")
 		inventory_grid.add_child(slot)
 
 	# Cria os slots da hotbar_grid
 	for i in range(InventoryManager.HOTBAR_SIZE):
 		var slot = slot_scene.instantiate()
 		slot.slot_index = i + InventoryManager.INVENTORY_SIZE
+		slot.add_to_group("inventory_slots")
 		hotbar_grid.add_child(slot)
 
 	# Atualiza os dados dos slots após a inicialização

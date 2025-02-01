@@ -18,11 +18,13 @@ func initialize_ui():
 	for i in range(InventoryManager.INVENTORY_SIZE + InventoryManager.HOTBAR_SIZE):
 		var slot = slot_scene.instantiate()
 		slot.slot_index = i
+		slot.add_to_group("inventory_slots") 
 		player_inventory_grid.add_child(slot)
 
 	for i in range(ShopManager.SHOP_SIZE):
 		var slot = slot_scene.instantiate()
 		slot.slot_index = i
+		slot.add_to_group("shop_slots")
 		shop_inventory_grid.add_child(slot)
 
 	refresh_ui()
