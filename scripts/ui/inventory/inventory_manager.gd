@@ -7,18 +7,11 @@ const COLUMNS := 9
 const INVENTORY_SIZE := (ROWS - 1) * COLUMNS
 const HOTBAR_SIZE := 1 * COLUMNS
 
-class InventoryRow:
-	var slots: Array[Item] = []
-
-	func _init(size: int):
-		for i in range(size):
-			slots.append(null)
-
-var inventory_items: Array[InventoryRow] = []
+var inventory_items: Array[Utils.ItemRow] = []
 
 func _init():
 	for i in range(ROWS):
-		inventory_items.append(InventoryRow.new(COLUMNS))
+		inventory_items.append(Utils.ItemRow.new(COLUMNS))
 
 func get_inventory_item(slot_index: int) -> Item:
 	var row = floor(slot_index / float(COLUMNS))
@@ -135,7 +128,7 @@ func remove_item_from_inventory(item_name: String, quantity: int) -> bool:
 	# Remover os itens
 	while !slots_to_remove.is_empty():
 		var slot = slots_to_remove.pop_back()
-		var row : InventoryRow = slot[0]
+		var row : Utils.ItemRow = slot[0]
 		var index : int = slot[1]
 		var item := row.slots[index]
 		if item.quantity > quantity:
@@ -145,6 +138,6 @@ func remove_item_from_inventory(item_name: String, quantity: int) -> bool:
 		quantity -= item.quantity
 		row.slots[index] = null
 
-	inventory_updated.emit()
 	# Remoção concluída com sucesso
+	inventory_updated.emit()
 	return true

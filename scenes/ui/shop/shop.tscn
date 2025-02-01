@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://rkpbsojxx6we"]
+[gd_scene load_steps=5 format=3 uid="uid://rkpbsojxx6we"]
 
 [ext_resource type="Theme" uid="uid://b4fsetkxnx070" path="res://resources/themes/inventory_theme.tres" id="1_2vnwt"]
 [ext_resource type="Script" path="res://scripts/ui/shop/shop.gd" id="2_pd3m4"]
+[ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="3_lmxdx"]
 [ext_resource type="Theme" uid="uid://1xix73mjs5tm" path="res://resources/themes/buttons/danger_button.tres" id="3_lrga2"]
 
 [node name="Shop" type="Control"]
@@ -13,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2vnwt")
 script = ExtResource("2_pd3m4")
+slot_scene = ExtResource("3_lmxdx")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1

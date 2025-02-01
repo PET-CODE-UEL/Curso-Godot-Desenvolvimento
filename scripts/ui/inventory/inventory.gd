@@ -1,8 +1,8 @@
 extends Control
 
 @export var slot_scene: PackedScene
-@onready var hotbar_grid = $Margin/Panel/Margin/VBox/HotbarGrid
-@onready var inventory_grid = $Margin/Panel/Margin/VBox/InventoryGrid
+@onready var hotbar_grid: GridContainer = $Margin/Panel/Margin/VBox/HotbarGrid
+@onready var inventory_grid: GridContainer = $Margin/Panel/Margin/VBox/InventoryGrid
 
 func _ready():
 	initialize_ui()

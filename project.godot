@@ -16,12 +16,13 @@ config/features=PackedStringArray("4.3", "Double Precision", "Forward Plus")
 
 [autoload]
 
+Utils="*res://scripts/utils/utils.gd"
 InventoryManager="*res://scripts/ui/inventory/inventory_manager.gd"
 ShopManager="*res://scripts/ui/shop/shop_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
 
 [input]
 
