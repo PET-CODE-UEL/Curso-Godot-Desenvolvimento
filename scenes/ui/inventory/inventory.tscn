@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cammby2b0x08p"]
+[gd_scene load_steps=4 format=3 uid="uid://cammby2b0x08p"]
 
+[ext_resource type="Theme" uid="uid://b4fsetkxnx070" path="res://resources/themes/inventory_theme.tres" id="1_2lurp"]
 [ext_resource type="Script" path="res://scripts/ui/inventory/inventory.gd" id="1_g5ibg"]
 [ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="2_tp7j2"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2lurp")
 script = ExtResource("1_g5ibg")
 slot_scene = ExtResource("2_tp7j2")
 
@@ -57,13 +59,9 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 columns = 9
 
 [node name="HotbarGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 columns = 9
