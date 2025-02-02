@@ -1,12 +1,28 @@
 extends CanvasLayer
 
-@onready var corn_amount = $CornAmount
-@onready var prompt = $Prompt
+@export var player: Player
+@onready var pause_menu: Control = $PauseMenu
 
-func update_prompt_text(new_text : String):
-	prompt.text = new_text
+func _ready() -> void:
+	pause_menu.hide()
 
-func update_crop_amount(crop_type, new_amount : int):
-	match crop_type:
-		CropTypes.CROP_TYPE.CORN:
-			corn_amount.text = "Corn: " + str(new_amount)
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if player.inventory_open:
+			player.toggle_inventory()
+		elif pause_menu.is_visible():
+			_resume_game()
+		else:
+			_pause_game()
+
+
+func _resume_game() -> void:
+	player.resume_game()
+	pause_menu.hide()
+	get_tree().paused = false
+
+
+func _pause_game() -> void:
+	player.pause_game()
+	pause_menu.show()
+	get_tree().paused = true
