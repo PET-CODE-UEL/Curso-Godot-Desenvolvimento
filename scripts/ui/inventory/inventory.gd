@@ -8,15 +8,6 @@ func _ready():
 	initialize_ui()
 	InventoryManager.inventory_updated.connect(refresh_ui)
 
-func _input(event: InputEvent) -> void:
-	# CODIGO TESTE REMOVER POSTERIORMENTE
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_K:
-			var item: Item = load("res://resources/items/espada.tres")
-			InventoryManager.add_item_to_inventory(item)
-		elif event.pressed and event.keycode == KEY_L:
-			InventoryManager.remove_item_from_inventory("Espada", 1)
-
 # Inicializa a interface com os slots
 func initialize_ui():
 	clear_children(hotbar_grid)
