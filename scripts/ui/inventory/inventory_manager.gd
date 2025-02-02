@@ -1,35 +1,28 @@
 extends Node
 
-signal inventory_updated  # Emite quando o inventário for alterado
+signal inventory_updated # Emite quando o inventário for alterado
 
 const ROWS := 4
 const COLUMNS := 9
 const INVENTORY_SIZE := (ROWS - 1) * COLUMNS
 const HOTBAR_SIZE := 1 * COLUMNS
 
-class InventoryRow:
-	var slots: Array[Item] = []
-
-	func _init(size: int):
-		for i in range(size):
-			slots.append(null)
-
-var inventory_items: Array[InventoryRow] = []
+var inventory_items: Array[Utils.ItemRow] = []
 
 func _init():
 	for i in range(ROWS):
-		inventory_items.append(InventoryRow.new(COLUMNS))
+		inventory_items.append(Utils.ItemRow.new(COLUMNS))
 
 func get_inventory_item(slot_index: int) -> Item:
-	var row = floor(slot_index / float(COLUMNS))
-	var col = slot_index % COLUMNS
+	var row = Utils.get_row(slot_index, COLUMNS)
+	var col = Utils.get_col(slot_index, COLUMNS)
 	if row >= 0 and row < ROWS and col >= 0 and col < COLUMNS:
 		return inventory_items[row].slots[col]
 	return null
 
 func set_inventory_item(slot_index: int, item: Item):
-	var row = floor(slot_index / float(COLUMNS))
-	var col = slot_index % COLUMNS
+	var row = Utils.get_row(slot_index, COLUMNS)
+	var col = Utils.get_col(slot_index, COLUMNS)
 	if row >= 0 and row < ROWS and col >= 0 and col < COLUMNS:
 		inventory_items[row].slots[col] = item
 		inventory_updated.emit()
@@ -46,11 +39,11 @@ func set_hotbar_item(index: int, item: Item):
 
 func swap_items(src_index, dst_index):
 	var src_item = get_inventory_item(src_index)
-	var src_row = floor(src_index / float(COLUMNS))
-	var src_col = src_index % COLUMNS
+	var src_row = Utils.get_row(src_index, COLUMNS)
+	var src_col = Utils.get_col(src_index, COLUMNS)
 	var dst_item = get_inventory_item(dst_index)
-	var dst_row = floor(dst_index / float(COLUMNS))
-	var dst_col = dst_index % COLUMNS
+	var dst_row = Utils.get_row(dst_index, COLUMNS)
+	var dst_col = Utils.get_col(dst_index, COLUMNS)
 	if src_item != null or dst_item != null:
 		inventory_items[dst_row].slots[dst_col] = src_item
 		inventory_items[src_row].slots[src_col] = dst_item
@@ -135,8 +128,8 @@ func remove_item_from_inventory(item_name: String, quantity: int) -> bool:
 	# Remover os itens
 	while !slots_to_remove.is_empty():
 		var slot = slots_to_remove.pop_back()
-		var row : InventoryRow = slot[0]
-		var index : int = slot[1]
+		var row: Utils.ItemRow = slot[0]
+		var index: int = slot[1]
 		var item := row.slots[index]
 		if item.quantity > quantity:
 			item.quantity -= quantity
@@ -145,6 +138,6 @@ func remove_item_from_inventory(item_name: String, quantity: int) -> bool:
 		quantity -= item.quantity
 		row.slots[index] = null
 
-	inventory_updated.emit()
 	# Remoção concluída com sucesso
+	inventory_updated.emit()
 	return true

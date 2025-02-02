@@ -1,14 +1,15 @@
 extends Control
 
 @export var slot_scene: PackedScene
-@onready var hotbar_grid = $Margin/Panel/Margin/VBox/HotbarGrid
-@onready var inventory_grid = $Margin/Panel/Margin/VBox/InventoryGrid
+@onready var hotbar_grid: GridContainer = $Margin/Panel/Margin/VBox/HotbarGrid
+@onready var inventory_grid: GridContainer = $Margin/Panel/Margin/VBox/InventoryGrid
 
 func _ready():
 	initialize_ui()
 	InventoryManager.inventory_updated.connect(refresh_ui)
 
 func _input(event: InputEvent) -> void:
+	# CODIGO TESTE REMOVER POSTERIORMENTE
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_K:
 			var item: Item = load("res://resources/items/espada.tres")
@@ -25,12 +26,14 @@ func initialize_ui():
 	for i in range(InventoryManager.INVENTORY_SIZE):
 		var slot = slot_scene.instantiate()
 		slot.slot_index = i
+		slot.add_to_group("inventory_slots")
 		inventory_grid.add_child(slot)
 
 	# Cria os slots da hotbar_grid
 	for i in range(InventoryManager.HOTBAR_SIZE):
 		var slot = slot_scene.instantiate()
 		slot.slot_index = i + InventoryManager.INVENTORY_SIZE
+		slot.add_to_group("inventory_slots")
 		hotbar_grid.add_child(slot)
 
 	# Atualiza os dados dos slots após a inicialização

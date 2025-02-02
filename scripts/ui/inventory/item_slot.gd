@@ -1,6 +1,8 @@
+class_name ItemSlot
 extends Button
 
 var item: Item = null
+var dragged_item: Item = null
 var slot_index: int = -1
 @onready var item_icon = $Margin/ItemIcon
 @onready var quantity_label = $ItemQuantity
@@ -8,9 +10,9 @@ var slot_index: int = -1
 func set_item(new_item: Item):
 	if new_item:
 		item = new_item.clone()
-		item_icon.texture = item.texture  # Define o ícone do item
-		quantity_label.text = str(item.quantity)  # Exibe a quantidade
-		quantity_label.visible = item.quantity > 1  # Só exibe se for maior que 1
+		item_icon.texture = item.texture # Define o ícone do item
+		quantity_label.text = str(item.quantity) # Exibe a quantidade
+		quantity_label.visible = item.quantity > 1 # Só exibe se for maior que 1
 	else:
 		clear_item()
 
@@ -20,35 +22,61 @@ func clear_item():
 	quantity_label.text = ""
 	quantity_label.visible = false
 
-func _input(event):
-	if event is InputEventMouseButton and not event.pressed:
-		# Quando o botão do mouse é solto, verifica se o drop falhou
-		for slot in get_tree().get_nodes_in_group("inventory_slots"):
-			if slot.is_drag_successful():
-				return
-
-		# Se chegou aqui, significa que o drop falhou
-		for slot in get_tree().get_nodes_in_group("inventory_slots"):
-			slot.drop_data_failed()
+# Detecta quando o arrastar termina
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END and not get_viewport().gui_is_drag_successful():
+		# O drop falhou! Restaura o item no slot original
+		if dragged_item:
+			set_item(dragged_item)
+			dragged_item = null
 
 # Drag & Drop
 func _get_drag_data(_position):
 	if item:
 		var preview = TextureRect.new()
-		preview.texture = item_icon.texture  # Usa o ícone do item
-		preview.custom_minimum_size = Vector2(32, 32)  # Ajusta o tamanho do preview
-		preview.modulate.a = 0.8  # Transparência no preview
+		preview.texture = item_icon.texture # Usa o ícone do item
+		preview.custom_minimum_size = Vector2(32, 32) # Ajusta o tamanho do preview
+		preview.modulate.a = 0.8 # Transparência no preview
 		set_drag_preview(preview)
-		clear_item()
-		return slot_index
+
+		dragged_item = item
+		if is_in_group("inventory_slots"):
+			clear_item()
+		return self
 	return null
 
-func _can_drop_data(_position, src_index):
-	return src_index is int
+func _can_drop_data(_position, data):
+	return data is ItemSlot
 
-func _drop_data(_position, src_index):
-	if src_index > -1:
-		InventoryManager.swap_items(src_index, slot_index)
+func _drop_data(_position, data):
+	var src_slot: ItemSlot = data
+	var dst_slot: ItemSlot = self
 
-func drop_data_failed():
-	set_item(InventoryManager.get_inventory_item(slot_index))
+	if not src_slot or not dst_slot:
+		return
+
+	var transaction_success = false
+
+	# Se estiver arrastando um item do inventário para a loja -> VENDA
+	if src_slot.is_in_group("inventory_slots") and dst_slot.is_in_group("shop_slots"):
+		transaction_success = ShopManager.sell_item(src_slot.dragged_item)
+		if transaction_success:
+			InventoryManager.set_inventory_item(src_slot.slot_index, null)
+
+	# Se estiver arrastando um item da loja para o inventário -> COMPRA
+	elif src_slot.is_in_group("shop_slots") and dst_slot.is_in_group("inventory_slots"):
+		transaction_success = not dst_slot.item and ShopManager.buy_item(src_slot.dragged_item)
+		if transaction_success:
+			InventoryManager.set_inventory_item(dst_slot.slot_index, src_slot.dragged_item)
+
+	# Se estiver arrastando um item do inventário para o inventário -> TROCA
+	elif src_slot.is_in_group("inventory_slots") and dst_slot.is_in_group("inventory_slots"):
+		transaction_success = true
+		InventoryManager.swap_items(src_slot.slot_index, dst_slot.slot_index)
+
+	# Se a transação falhar, devolve o item ao slot original
+	if not transaction_success and src_slot.dragged_item:
+		src_slot.set_item(src_slot.dragged_item)
+
+	# Limpa a variável temporária
+	src_slot.dragged_item = null

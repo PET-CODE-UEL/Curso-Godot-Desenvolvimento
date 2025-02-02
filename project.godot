@@ -11,16 +11,18 @@ config_version=5
 [application]
 
 config/name="Jogo Fazenda PET"
-run/main_scene="res://scenes/ui/main_menu.tscn"
+run/main_scene="res://scenes/ui/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Double Precision", "Forward Plus")
 
 [autoload]
 
+Utils="*res://scripts/utils/utils.gd"
 InventoryManager="*res://scripts/ui/inventory/inventory_manager.gd"
+ShopManager="*res://scripts/ui/shop/shop_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
 
 [input]
 

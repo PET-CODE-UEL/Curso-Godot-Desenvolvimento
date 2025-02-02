@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cammby2b0x08p"]
+[gd_scene load_steps=5 format=3 uid="uid://rkpbsojxx6we"]
 
-[ext_resource type="Theme" uid="uid://b4fsetkxnx070" path="res://resources/themes/inventory_theme.tres" id="1_2lurp"]
-[ext_resource type="Script" path="res://scripts/ui/inventory/inventory.gd" id="1_g5ibg"]
-[ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="2_tp7j2"]
+[ext_resource type="Theme" uid="uid://b4fsetkxnx070" path="res://resources/themes/inventory_theme.tres" id="1_2vnwt"]
+[ext_resource type="Script" path="res://scripts/ui/shop/shop.gd" id="2_pd3m4"]
+[ext_resource type="PackedScene" uid="uid://bbyljo0luuof5" path="res://scenes/ui/inventory/item_slot.tscn" id="3_lmxdx"]
+[ext_resource type="Theme" uid="uid://1xix73mjs5tm" path="res://resources/themes/buttons/danger_button.tres" id="3_lrga2"]
 
-[node name="Inventory" type="Control"]
+[node name="Shop" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_2lurp")
-script = ExtResource("1_g5ibg")
-slot_scene = ExtResource("2_tp7j2")
+theme = ExtResource("1_2vnwt")
+script = ExtResource("2_pd3m4")
+slot_scene = ExtResource("3_lmxdx")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -55,13 +56,28 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="InventoryGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
+[node name="ShopGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
 columns = 9
 
-[node name="HotbarGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
+[node name="PlayerInventoryGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 9
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Money" type="Label" parent="Margin/Panel/Margin/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "$ 100
+"
+
+[node name="Close" type="Button" parent="Margin/Panel/Margin/VBox/HBox"]
+layout_mode = 2
+theme = ExtResource("3_lrga2")
+text = "Fechar"

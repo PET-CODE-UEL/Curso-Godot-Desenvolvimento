@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d0i830h3gg5l6" path="res://scenes/terrain/terrain.tscn" id="2_pslca"]
 [ext_resource type="Script" path="res://scenes/terrain/terrain.gd" id="3_jlbe3"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player/player.tscn" id="3_lgxfs"]
-[ext_resource type="PackedScene" uid="uid://ccgiwlyxfyqd8" path="res://scenes/ui/pause_menu.tscn" id="4_v3q5l"]
-[ext_resource type="PackedScene" uid="uid://kpvw44fo28gr" path="res://scenes/ui/hud.tscn" id="6_umggq"]
+[ext_resource type="PackedScene" uid="uid://ccgiwlyxfyqd8" path="res://scenes/ui/menus/pause_menu.tscn" id="4_v3q5l"]
+[ext_resource type="PackedScene" uid="uid://dh47wok31jfx0" path="res://scenes/ui/hud.tscn" id="6_umggq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2sho"]
 sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)
