@@ -42,14 +42,12 @@ func remove_money(amount: int) -> bool:
 
 func buy_item(item: Item) -> bool:
 	if remove_money(item.price):
-		var new_item = item.clone()
-		InventoryManager.add_item_to_inventory(new_item)
 		return true
 	return false
 
 func sell_item(item: Item) -> bool:
-	if InventoryManager.remove_item_from_inventory(item.name, 1):
-		add_money(item.price)
+	if item.can_sell:
+		add_money(ceil(item.price * item.quantity * 0.8))
 		return true
 	return false
 

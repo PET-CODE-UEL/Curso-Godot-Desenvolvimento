@@ -8,5 +8,6 @@ script = ExtResource("1_mvaby")
 name = "Espada"
 texture = ExtResource("2_eorh5")
 max_stack = 1
-description = ""
 quantity = 1
+price = 20
+can_sell = true
