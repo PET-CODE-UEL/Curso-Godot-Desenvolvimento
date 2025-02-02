@@ -1,10 +1,7 @@
 extends Control
 
 func _on_resume_pressed() -> void:
-    UIManager.toggle_pause()  # Alterna o pause corretamente
-
-func _on_options_pressed() -> void:
-    pass  # Aqui você pode abrir um menu de opções no futuro
+    UIManager.toggle_pause()
 
 func _on_menu_exit_pressed() -> void:
     UIManager.force_unpause()

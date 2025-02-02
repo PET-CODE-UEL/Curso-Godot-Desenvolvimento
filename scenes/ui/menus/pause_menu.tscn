@@ -52,10 +52,6 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "Resume"
 
-[node name="Options" type="Button" parent="Center/Panel/Margin/VBox"]
-layout_mode = 2
-text = "Options"
-
 [node name="MenuExit" type="Button" parent="Center/Panel/Margin/VBox"]
 layout_mode = 2
 text = "Save and Exit to Menu"
@@ -65,6 +61,5 @@ layout_mode = 2
 text = "Save and Exit to Desktop"
 
 [connection signal="pressed" from="Center/Panel/Margin/VBox/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Center/Panel/Margin/VBox/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Center/Panel/Margin/VBox/MenuExit" to="." method="_on_menu_exit_pressed"]
 [connection signal="pressed" from="Center/Panel/Margin/VBox/DesktopExit" to="." method="_on_desktop_exit_pressed"]

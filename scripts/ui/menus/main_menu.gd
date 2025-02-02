@@ -14,9 +14,6 @@ func _on_load_game_pressed() -> void:
 	set_button_menu(false)
 	load_game.show()
 
-func _on_options_pressed() -> void:
-	pass # Replace with function body.
-
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 
