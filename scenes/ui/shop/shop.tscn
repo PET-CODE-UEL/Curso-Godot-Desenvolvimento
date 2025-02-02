@@ -64,12 +64,13 @@ columns = 9
 [node name="PlayerInventoryGrid" type="GridContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
 columns = 9
 
 [node name="HBox" type="HBoxContainer" parent="Margin/Panel/Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.2
+size_flags_stretch_ratio = 0.15
 
 [node name="Money" type="Label" parent="Margin/Panel/Margin/VBox/HBox"]
 layout_mode = 2
@@ -79,5 +80,9 @@ text = "$ 100
 
 [node name="Close" type="Button" parent="Margin/Panel/Margin/VBox/HBox"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
 theme = ExtResource("3_lrga2")
 text = "Fechar"
+
+[connection signal="pressed" from="Margin/Panel/Margin/VBox/HBox/Close" to="." method="_on_close_pressed"]

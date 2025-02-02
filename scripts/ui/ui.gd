@@ -1,12 +1,20 @@
 extends CanvasLayer
 
-@onready var corn_amount = $CornAmount
-@onready var prompt = $Prompt
+@onready var hud: Control = $HUD
+@onready var inventory: Control = $Inventory
+@onready var shop: Control = $Shop
+@onready var pause_menu: Control = $PauseMenu
 
-func update_prompt_text(new_text : String):
-	prompt.text = new_text
+func _ready() -> void:
+    UIManager.initialize(self)
 
-func update_crop_amount(crop_type, new_amount : int):
-	match crop_type:
-		CropTypes.CROP_TYPE.CORN:
-			corn_amount.text = "Corn: " + str(new_amount)
+func _input(event):
+    if event.is_action_pressed("ui_cancel"):
+        if UIManager.is_inventory_open:
+            UIManager.toggle_inventory()
+        elif UIManager.is_shop_open:
+            UIManager.toggle_shop()
+        elif pause_menu.visible:
+            UIManager.toggle_pause()
+        else:
+            UIManager.toggle_pause()

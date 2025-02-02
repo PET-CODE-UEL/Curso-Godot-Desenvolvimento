@@ -29,20 +29,13 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 @onready var skeleton: Skeleton3D = $"CollisionShape3D/PlayerModel/Armação/Skeleton3D"
 @onready var head_bone := skeleton.find_bone("Coluna Superior")
 
-# Inventário
-@onready var inventory_ui: Control = $Inventory
-var inventory_open = false
-
 #----------------------------- Interação -------------------------------------------
-@onready var ui = $CanvasLayer
 @onready var interacter = $Interacter
 
 
 func _ready():
-	inventory_ui.hide()
 	update_camera_mode()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	interacter.connect("update_prompt_text", ui.update_prompt_text)
+	interacter.connect("update_prompt_text", UIManager.update_prompt_text)
 
 #------------------------------------------------------------------------------------
 
@@ -63,8 +56,10 @@ func _input(event):
 		cycle_camera_mode()
 
 	if event.is_action_pressed("inventory_toggle"):
-		toggle_inventory()
+		UIManager.toggle_inventory()
 
+	if event.is_action_pressed("shop_toggle"):
+		UIManager.toggle_shop()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -90,25 +85,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func pause_game() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func resume_game() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-func toggle_inventory():
-	inventory_open = !inventory_open
-	inventory_ui.visible = inventory_open
-
-	if inventory_open:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 func set_walk(value: bool):
 	animation_tree["parameters/conditions/walking"] = value
 	animation_tree["parameters/conditions/idle"] = not value
-
 
 func cycle_camera_mode():
 	var camera_modes := CameraModes.values()

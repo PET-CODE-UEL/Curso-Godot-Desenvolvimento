@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=12 format=3 uid="uid://difjsubfpsgre"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_arjf6"]
 [ext_resource type="PackedScene" uid="uid://d0i830h3gg5l6" path="res://scenes/terrain/terrain.tscn" id="2_pslca"]
 [ext_resource type="Script" path="res://scenes/terrain/terrain.gd" id="3_jlbe3"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player/player.tscn" id="3_lgxfs"]
 [ext_resource type="PackedScene" uid="uid://ccgiwlyxfyqd8" path="res://scenes/ui/menus/pause_menu.tscn" id="4_v3q5l"]
+[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="5_yny47"]
 [ext_resource type="PackedScene" uid="uid://dh47wok31jfx0" path="res://scenes/ui/hud.tscn" id="6_umggq"]
+[ext_resource type="PackedScene" uid="uid://cammby2b0x08p" path="res://scenes/ui/inventory/inventory.tscn" id="7_mggcw"]
+[ext_resource type="PackedScene" uid="uid://rkpbsojxx6we" path="res://scenes/ui/shop/shop.tscn" id="8_1ln0c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2sho"]
 sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)
@@ -19,7 +21,6 @@ background_color = Color(0.171351, 0.695055, 1, 1)
 sky = SubResource("Sky_meneh")
 
 [node name="Main" type="Node"]
-script = ExtResource("1_arjf6")
 
 [node name="Game" type="Node3D" parent="."]
 process_mode = 1
@@ -39,8 +40,18 @@ transform = Transform3D(-4.37114e-08, -0.866025, 0.5, 0, 0.5, 0.866025, -1, 3.78
 layers = 0
 shadow_enabled = true
 
-[node name="PauseMenu" parent="." instance=ExtResource("4_v3q5l")]
-process_mode = 2
+[node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("5_yny47")
+
+[node name="HUD" parent="UI" instance=ExtResource("6_umggq")]
+
+[node name="Inventory" parent="UI" instance=ExtResource("7_mggcw")]
 visible = false
 
-[node name="HUD" parent="." instance=ExtResource("6_umggq")]
+[node name="Shop" parent="UI" instance=ExtResource("8_1ln0c")]
+visible = false
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("4_v3q5l")]
+process_mode = 2
+visible = false

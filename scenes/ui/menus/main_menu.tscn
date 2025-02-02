@@ -57,12 +57,6 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Load Game"
 
-[node name="Options" type="Button" parent="DynamicContent/ButtonMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Options
-"
-
 [node name="Exit" type="Button" parent="DynamicContent/ButtonMenu"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -102,5 +96,4 @@ text = "PET CODE UEL"
 
 [connection signal="pressed" from="DynamicContent/ButtonMenu/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="DynamicContent/ButtonMenu/Load Game" to="." method="_on_load_game_pressed"]
-[connection signal="pressed" from="DynamicContent/ButtonMenu/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="DynamicContent/ButtonMenu/Exit" to="." method="_on_exit_pressed"]

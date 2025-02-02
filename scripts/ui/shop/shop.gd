@@ -46,3 +46,7 @@ func refresh_money(money_amount):
 func clear_children(node: Node):
 	for child in node.get_children():
 		child.queue_free()
+
+
+func _on_close_pressed() -> void:
+	UIManager.toggle_shop()
