@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.3", "Double Precision", "Forward Plus")
 Utils="*res://scripts/utils/utils.gd"
 InventoryManager="*res://scripts/ui/inventory/inventory_manager.gd"
 ShopManager="*res://scripts/ui/shop/shop_manager.gd"
+UIManager="*res://scripts/ui/ui_manager.gd"
 
 [editor_plugins]
 
