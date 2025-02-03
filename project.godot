@@ -23,7 +23,7 @@ UIManager="*res://scripts/ui/ui_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
@@ -111,3 +111,8 @@ shop_toggle={
 3d_physics/layer_2="crop"
 3d_physics/layer_3="plant_area"
 3d_physics/layer_4="player"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

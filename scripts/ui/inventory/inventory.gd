@@ -7,6 +7,12 @@ extends Control
 func _ready():
 	initialize_ui()
 	InventoryManager.inventory_updated.connect(refresh_ui)
+	var enxada: Item = load("res://resources/items/enxada.tres")
+	InventoryManager.add_item_to_inventory(enxada)
+	var foice: Item = load("res://resources/items/foice.tres")
+	InventoryManager.add_item_to_inventory(foice)
+	var regador: Item = load("res://resources/items/regador.tres")
+	InventoryManager.add_item_to_inventory(regador)
 
 # Inicializa a interface com os slots
 func initialize_ui():

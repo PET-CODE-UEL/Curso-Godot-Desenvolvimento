@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://crvquj6gtsjcm"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory/item.gd" id="1_vreij"]
+[ext_resource type="Texture2D" uid="uid://g3bt2hw5qaid" path="res://assets/icons/enxada-icon.png" id="2_ct34d"]
+
+[resource]
+script = ExtResource("1_vreij")
+name = "Enxada"
+texture = ExtResource("2_ct34d")
+max_stack = 1
+quantity = 1
+price = 10
+can_sell = true
