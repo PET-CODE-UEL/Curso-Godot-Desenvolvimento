@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_3rtm1")
 script = ExtResource("1_cr87c")
 
 [node name="Margin" type="MarginContainer" parent="."]

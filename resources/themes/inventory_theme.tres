@@ -1,5 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://b4fsetkxnx070"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b4fsetkxnx070"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r8r6"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [resource]
+Button/styles/normal = SubResource("StyleBoxFlat_6r8r6")
 GridContainer/constants/h_separation = 10
 GridContainer/constants/v_separation = 10
