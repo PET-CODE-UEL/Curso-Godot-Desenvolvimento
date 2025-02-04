@@ -4,8 +4,12 @@ extends Button
 var item: Item = null
 var dragged_item: Item = null
 var slot_index: int = -1
-@onready var item_icon = $Margin/ItemIcon
-@onready var quantity_label = $ItemQuantity
+@onready var item_icon : TextureRect = $Margin/ItemIcon
+@onready var quantity_label : Label = $ItemQuantity
+@onready var index_label : Label = $Margin/Index
+
+func _ready() -> void:
+	index_label.hide()
 
 func set_item(new_item: Item):
 	if new_item:

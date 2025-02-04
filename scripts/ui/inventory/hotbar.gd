@@ -11,10 +11,12 @@ func _ready():
 
 func setup_slots():
 	for i in range(InventoryManager.HOTBAR_SIZE):
-		var slot = slot_scene.instantiate()
+		var slot : ItemSlot = slot_scene.instantiate()
 		add_child(slot)
 		slots.append(slot)
 		slot.set_item(InventoryManager.get_hotbar_item(i))
+		slot.index_label.show()
+		slot.index_label.text = str(i+1)
 
 func update_hotbar():
 	for i in range(InventoryManager.HOTBAR_SIZE):
