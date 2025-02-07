@@ -11,6 +11,7 @@ var egg_timer = 0.0
 var egg_ready
 
 func _ready():
+	add_to_group("chickens")
 	randomize()
 	pick_random_direction()
 	egg_timer = egg_interval

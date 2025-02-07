@@ -20,6 +20,17 @@ func save_game(slot: int) -> void:
 			"z": Player.position.z
 		}    
 	}
+
+	# 4. Salva a posicao de todas as galinhas
+	var chicken_positions = []
+	for chicken in get_tree().get_nodes_in_group("chickens"):
+		print("saving chicken")
+		chicken_positions.append({
+			"x": chicken.global_position.x,
+			"y": chicken.global_position.y,
+			"z": chicken.global_position.z
+		})
+	save_data["chickens"] = chicken_positions
 	
 	# Se tiver outros sistemas (por exemplo, estado do mundo, plantações, etc.),
 	# adicione-os aqui.
@@ -56,6 +67,14 @@ func load_game(slot: int) -> void:
 		var pos_dict = save_data["player"]["position"]
 		# Converte o dicionário para um Vector3 e atribui à posição do jogador
 		Player.position = Vector3(pos_dict["x"], pos_dict["y"], pos_dict["z"])
+
+	# 4. Carrega as galinhas
+	if save_data.has("chickens"):
+		var chicken_scene = preload("res://scenes/animals/chicken.tscn")
+		for pos_dict in save_data["chickens"]:
+			var chicken = chicken_scene.instantiate()
+			chicken.global_position = Vector3(pos_dict["x"], pos_dict["y"], pos_dict["z"])
+			get_tree().current_scene.add_child(chicken)
 	
 	print("Jogo carregado do slot %d!" % slot)
 

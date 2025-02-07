@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_f27d0"]
 size = Vector3(1.56739, 7.65374, 1.1364)
 
-[node name="chicken" type="CharacterBody3D"]
+[node name="chicken" type="CharacterBody3D" groups=["chickens"]]
 disable_mode = 2
 collision_layer = 72
 script = ExtResource("2_s0seg")
