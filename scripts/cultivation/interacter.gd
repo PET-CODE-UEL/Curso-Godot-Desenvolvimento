@@ -8,6 +8,7 @@ signal harvested_crop
 @export var corn_scene : PackedScene
 @export var tomato_scene : PackedScene
 @export var plantation_scene : PackedScene
+@export var chicken_scene : PackedScene
 
 # PROCESS QUE CHECA A POSSIBILIDADE DE ACOES
 func _process(_delta):
@@ -21,11 +22,18 @@ func _process(_delta):
 		watering_crop()
 	if Input.is_action_just_pressed("fertilizing"):
 		fertilizing_soil()
-		
+	if Input.is_action_just_pressed("spawn_chicken"):
+		spawn_chicken()
+	if Input.is_action_just_pressed("collect_egg"):
+		collect_egg()
+
 	var crop_ray = raycast(2)
 	var soil_ray = raycast(4)
 	var ground_ray = raycast(1)
-	if crop_ray:
+	var chicken_ray = raycast(8)
+	if chicken_ray:
+		emit_signal("update_prompt_text", chicken_ray.collider.update_prompt_text())
+	elif crop_ray:
 		emit_signal("update_prompt_text", crop_ray.collider.update_prompt_text())
 	elif soil_ray:
 		emit_signal("update_prompt_text", soil_ray.collider.update_prompt_text())
@@ -136,4 +144,16 @@ func raycast(layer: int):
 	var result = space_state.intersect_ray(query)
 	return result
 
-	
+# FUNCAO PRA SPAWNAR GALINHAS
+func spawn_chicken():
+	var result = raycast(1)
+	if result:
+		var chicken_instance = chicken_scene.instantiate()
+		chicken_instance.global_transform.origin = result.position + Vector3.UP * 0.5
+		get_tree().get_root().add_child(chicken_instance)
+
+func collect_egg():
+	var result = raycast(8)
+	if result:
+		if result.collider:
+			result.collider.interact()

@@ -8,20 +8,20 @@ var gravity = -9.8
 var move_direction = Vector3.ZERO
 var move_timer = 0.0
 var egg_timer = 0.0
+var egg_ready
 
 func _ready():
 	randomize()
 	pick_random_direction()
 	egg_timer = egg_interval
+	egg_ready = false
 
 func _process(delta):
-	egg_timer -= delta
 	if egg_timer <= 0:
-		var inventory_manager = get_node("/root/InventoryManager")
-		var egg_resource = load("res://resources/items/ovo.tres")
-		var egg_item = egg_resource.duplicate()
-		inventory_manager.add_item_to_inventory(egg_item)
-		egg_timer = egg_interval
+		egg_ready = true
+	else:
+		egg_timer -= delta
+		egg_ready = false
 
 func _physics_process(delta):
 	move_timer -= delta
@@ -51,3 +51,18 @@ func pick_random_direction():
 
 func randf_range(min_val: float, max_val: float) -> float:
 	return min_val + randf() * (max_val - min_val)
+
+func interact():
+	if egg_ready:
+		var inventory_manager = get_node("/root/InventoryManager")
+		var egg_resource = load("res://resources/items/ovo.tres")
+		var egg_item = egg_resource.duplicate()
+		inventory_manager.add_item_to_inventory(egg_item)
+		egg_ready = false
+		egg_timer = egg_interval
+
+func update_prompt_text() -> String:
+	if egg_ready:
+		return "Pressione Mouse1 para coletar o ovo"
+	else:
+		return "%.1f" % egg_timer + " ate o proximo ovo."
