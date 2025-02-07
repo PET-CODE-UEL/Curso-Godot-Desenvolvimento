@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c8s81xqdgnguo"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory/item.gd" id="1_i3uhv"]
+[ext_resource type="Texture2D" uid="uid://dwt20kj7k5mo2" path="res://assets/icons/egg.png" id="2_aq2sb"]
+
+[resource]
+script = ExtResource("1_i3uhv")
+name = "ovo"
+texture = ExtResource("2_aq2sb")
+max_stack = 1000
+quantity = 1
+price = 10
+can_sell = true

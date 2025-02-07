@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cawj88oyis3pg"]
+
+[ext_resource type="PackedScene" uid="uid://bttsho10iix1a" path="res://assets/models/chicken.glb" id="1_el0qf"]
+[ext_resource type="Script" path="res://scripts/animals/chicken.gd" id="2_s0seg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f27d0"]
+size = Vector3(1.7036, 3.56768, 1)
+
+[node name="chicken" type="CharacterBody3D"]
+disable_mode = 2
+collision_layer = 128
+script = ExtResource("2_s0seg")
+egg_interval = 30
+
+[node name="model" parent="." instance=ExtResource("1_el0qf")]
+transform = Transform3D(6.12323e-17, 0, 1, 0, 1, 0, -1, 0, 6.12323e-17, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133793, 1.28384, 0)
+shape = SubResource("BoxShape3D_f27d0")

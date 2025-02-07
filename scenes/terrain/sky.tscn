@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddyfmboh8f1ar"]
+
+[ext_resource type="Script" path="res://scripts/terrain/sun.gd" id="4_8a00o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h074g"]
+sky_top_color = Color(0.276698, 0.433459, 0.764196, 1)
+
+[sub_resource type="Sky" id="Sky_6nq7b"]
+sky_material = SubResource("ProceduralSkyMaterial_h074g")
+
+[sub_resource type="Environment" id="Environment_vlxst"]
+background_mode = 2
+background_color = Color(0.171351, 0.695055, 1, 1)
+sky = SubResource("Sky_6nq7b")
+
+[node name="Sky" type="Node3D" node_paths=PackedStringArray("world_env", "sun", "moon", "anchor")]
+script = ExtResource("4_8a00o")
+enable_time_passage = true
+world_env = NodePath("Céu")
+sun = NodePath("Anchor/sun")
+moon = NodePath("Anchor/moon")
+anchor = NodePath("Anchor")
+
+[node name="Céu" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vlxst")
+
+[node name="Anchor" type="Node3D" parent="."]
+
+[node name="moon" type="DirectionalLight3D" parent="Anchor"]
+transform = Transform3D(1, 0, 0, 0, -1, -1.22465e-16, 0, 1.22465e-16, -1, 0, 0, 697.308)
+light_energy = 0.15
+
+[node name="sun" type="DirectionalLight3D" parent="Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -697.308)
+light_color = Color(0.843184, 0.843184, 0.843184, 1)
