@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brnjfmevhvwcy"]
+[gd_scene load_steps=9 format=3 uid="uid://brnjfmevhvwcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qq77i"]
 [ext_resource type="Script" path="res://scripts/cultivation/interacter.gd" id="2_y4ix7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xt5alnos77b1" path="res://scenes/plants/plantation.tscn" id="4_jnjb2"]
 [ext_resource type="PackedScene" uid="uid://c5gonk7lrvfi5" path="res://scenes/player/player_model.tscn" id="4_l6emr"]
 [ext_resource type="PackedScene" uid="uid://dac7sxoy38h1c" path="res://scenes/plants/tomato.tscn" id="4_v0ukv"]
+[ext_resource type="PackedScene" uid="uid://cawj88oyis3pg" path="res://scenes/animals/chicken.tscn" id="6_ksyij"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7qcy"]
 size = Vector3(2.33863, 4.72286, 3.36939)
@@ -20,6 +21,7 @@ script = ExtResource("2_y4ix7")
 corn_scene = ExtResource("3_ks3wp")
 tomato_scene = ExtResource("4_v0ukv")
 plantation_scene = ExtResource("4_jnjb2")
+chicken_scene = ExtResource("6_ksyij")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, 1.22465e-16, 0, 1, 0, -1.22465e-16, 0, -1, 0.0290521, -0.221151, 0.362074)

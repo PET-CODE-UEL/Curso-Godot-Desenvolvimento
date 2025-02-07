@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0i830h3gg5l6"]
+
+[ext_resource type="Texture2D" uid="uid://lcfuqvysxcur" path="res://assets/texture/grama.png" id="1_rxh06"]
+
+[sub_resource type="VoxelStreamRegionFiles" id="VoxelStreamRegionFiles_5xrjk"]
+save_generator_output = true
+directory = "res://"
+
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_ly2jk"]
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_4rjxp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sddtl"]
+albedo_texture = ExtResource("1_rxh06")
+uv1_triplanar = true
+
+[node name="Terreno" type="VoxelLodTerrain"]
+stream = SubResource("VoxelStreamRegionFiles_5xrjk")
+generator = SubResource("VoxelGeneratorFlat_ly2jk")
+mesher = SubResource("VoxelMesherTransvoxel_4rjxp")
+voxel_bounds = AABB(-5.36871e+08, -5.36871e+08, -5.36871e+08, 1.07374e+09, 1.07374e+09, 1.07374e+09)
+material = SubResource("StandardMaterial3D_sddtl")
