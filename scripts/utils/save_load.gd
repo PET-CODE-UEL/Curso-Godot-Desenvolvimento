@@ -1,6 +1,7 @@
 extends Node
 
 var game : Game
+var pending_save_name: String = ""
 
 func initialize(game_node : Node):
 	game = game_node
@@ -68,7 +69,7 @@ func load_game(save_name: String) -> void:
 	# 3. Carrega os dados do jogador
 	if save_data.has("player"):
 		var pos_dict = save_data["player"]["position"]
-		Player.position = Vector3(pos_dict["x"], pos_dict["y"], pos_dict["z"])
+		game.player.position = Vector3(pos_dict["x"], pos_dict["y"], pos_dict["z"])
 
 	# 4. Carrega as galinhas
 	if save_data.has("chickens"):
@@ -84,3 +85,6 @@ func load_game(save_name: String) -> void:
 func has_save(save_name: String) -> bool:
 	var file_path = "user://%s.save" % save_name
 	return FileAccess.file_exists(file_path)
+
+func set_pending_save(save_name: String) -> void:
+	pending_save_name = save_name

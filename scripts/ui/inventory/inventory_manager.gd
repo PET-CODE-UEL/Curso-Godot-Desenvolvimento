@@ -71,7 +71,8 @@ func load(inventory_data: Dictionary):
 		for col in range(COLUMNS):
 			if item_index < inventory_data["inventory"].size():
 				var item_data = inventory_data["inventory"][item_index]
-				var item = load("res://itens/" + item_data["name"] + ".tres")
+				print("res://resources/items/" + item_data["name"].to_lower() + ".tres")
+				var item = load("res://resources/items/" + item_data["name"].to_lower() + ".tres")
 				item.quantity = item_data["quantity"]
 				row.slots[col] = item
 				item_index += 1

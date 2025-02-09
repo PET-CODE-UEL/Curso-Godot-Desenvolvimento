@@ -44,12 +44,13 @@ func _on_load_pressed() -> void:
 	# Extraia o nome do save removendo a extensão ".save"
 	var save_name = file_name.substr(0, file_name.length() - 5)
 
-	# Chama a função de load usando o nome escolhido
-	SaveLoad.load_game(save_name)
+	# Armazena o nome do save para ser carregado no novo cenário
+	SaveLoad.set_pending_save(save_name)
 
 	# Troque para a cena principal do jogo (ajuste o caminho conforme necessário)
-	get_tree().change_scene("res://scenes/main_scene.tscn")
-	print("Carregando save: %s" % save_name)
+	get_tree().change_scene_to_file("res://scenes/main_scene.tscn")
+	print("Preparando o load do save: %s" % save_name)
+
 
 func _on_back_pressed() -> void:
 	# Retorne ao menu anterior (ajuste o caminho se necessário)
