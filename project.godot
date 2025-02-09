@@ -20,10 +20,11 @@ Utils="*res://scripts/utils/utils.gd"
 InventoryManager="*res://scripts/ui/inventory/inventory_manager.gd"
 ShopManager="*res://scripts/ui/shop/shop_manager.gd"
 UIManager="*res://scripts/ui/ui_manager.gd"
+SaveLoad="*res://scripts/utils/save_load.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
 
 [input]
 

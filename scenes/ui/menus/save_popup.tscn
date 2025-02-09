@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy8av1418r6qs"]
+
+[ext_resource type="Script" path="res://scripts/ui/menus/save_popup.gd" id="1_s5g0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32pat"]
+bg_color = Color(0.270588, 0.282353, 0.305882, 1)
+shadow_size = 5
+shadow_offset = Vector2(-2.07, 4.58)
+
+[node name="SavePopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_s5g0e")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Center"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_32pat")
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Nome do save"
+
+[node name="HBox" type="HBoxContainer" parent="Center/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Cancel" type="Button" parent="Center/Panel/VBox/HBox"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Save" type="Button" parent="Center/Panel/VBox/HBox"]
+layout_mode = 2
+text = "Save"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="Center/Panel/VBox/HBox/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/HBox/Save" to="." method="_on_save_pressed"]

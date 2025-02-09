@@ -1,7 +1,7 @@
 extends Node
 
 # Referência para o nó UI que contém todos os nós de interface
-var ui: CanvasLayer
+var ui: UI
 
 var is_inventory_open: bool = false
 var is_shop_open: bool = false
@@ -13,6 +13,7 @@ func initialize(ui_node: CanvasLayer):
 	ui.inventory.visible = false
 	ui.shop.visible = false
 	ui.pause_menu.visible = false
+	ui.save_popup.visible = false
 
 func toggle_inventory() -> void:
 	is_inventory_open = !is_inventory_open
