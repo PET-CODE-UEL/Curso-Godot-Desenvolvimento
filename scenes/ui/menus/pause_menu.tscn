@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccgiwlyxfyqd8"]
+[gd_scene load_steps=2 format=3 uid="uid://ccgiwlyxfyqd8"]
 
 [ext_resource type="Script" path="res://scripts/ui/menus/pause_menu.gd" id="1_doege"]
-[ext_resource type="PackedScene" uid="uid://dy8av1418r6qs" path="res://scenes/ui/menus/save_popup.tscn" id="2_5ckg2"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_doege")
-save_popup = ExtResource("2_5ckg2")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -56,11 +54,11 @@ text = "Resume"
 
 [node name="MenuExit" type="Button" parent="Center/Panel/Margin/VBox"]
 layout_mode = 2
-text = "Save and Exit to Menu"
+text = "Exit to Menu"
 
 [node name="DesktopExit" type="Button" parent="Center/Panel/Margin/VBox"]
 layout_mode = 2
-text = "Save and Exit to Desktop"
+text = "Exit to Desktop"
 
 [connection signal="pressed" from="Center/Panel/Margin/VBox/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Center/Panel/Margin/VBox/MenuExit" to="." method="_on_menu_exit_pressed"]

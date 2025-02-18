@@ -13,7 +13,6 @@ func initialize(ui_node: CanvasLayer):
 	ui.inventory.visible = false
 	ui.shop.visible = false
 	ui.pause_menu.visible = false
-	ui.save_popup.visible = false
 
 func toggle_inventory() -> void:
 	is_inventory_open = !is_inventory_open
