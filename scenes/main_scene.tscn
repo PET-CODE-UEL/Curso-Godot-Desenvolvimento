@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://difjsubfpsgre"]
+[gd_scene load_steps=11 format=3 uid="uid://difjsubfpsgre"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_x6uut"]
 [ext_resource type="PackedScene" uid="uid://d0i830h3gg5l6" path="res://terrain/terrain.tscn" id="2_pslca"]
 [ext_resource type="Script" path="res://scenes/terrain/terrain.gd" id="3_jlbe3"]
 [ext_resource type="PackedScene" uid="uid://brnjfmevhvwcy" path="res://scenes/player/player.tscn" id="3_lgxfs"]
@@ -10,14 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dh47wok31jfx0" path="res://scenes/ui/hud.tscn" id="6_umggq"]
 [ext_resource type="PackedScene" uid="uid://cammby2b0x08p" path="res://scenes/ui/inventory/inventory.tscn" id="7_mggcw"]
 [ext_resource type="PackedScene" uid="uid://rkpbsojxx6we" path="res://scenes/ui/shop/shop.tscn" id="8_1ln0c"]
-[ext_resource type="PackedScene" uid="uid://dy8av1418r6qs" path="res://scenes/ui/menus/save_popup.tscn" id="10_2ljm2"]
 [ext_resource type="PackedScene" uid="uid://cawj88oyis3pg" path="res://scenes/animals/chicken.tscn" id="10_5fcms"]
 
 [node name="Main" type="Node"]
 
 [node name="Game" type="Node3D" parent="."]
 process_mode = 1
-script = ExtResource("1_x6uut")
 
 [node name="Terreno" parent="Game" instance=ExtResource("2_pslca")]
 voxel_bounds = AABB(-5.36871e+08, -5.36871e+08, -5.36871e+08, 1.07374e+09, 1.07374e+09, 1.07374e+09)
@@ -45,8 +42,4 @@ visible = false
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("4_v3q5l")]
 process_mode = 2
-visible = false
-save_popup = null
-
-[node name="SavePopup" parent="UI" instance=ExtResource("10_2ljm2")]
 visible = false

@@ -3,7 +3,9 @@
 [ext_resource type="Theme" uid="uid://c8cb1paw5k7xe" path="res://resources/themes/menu_theme.tres" id="1_pye2i"]
 [ext_resource type="Texture2D" uid="uid://d0527k6uq5nxy" path="res://assets/background/background.png" id="1_sew5i"]
 [ext_resource type="Script" path="res://scripts/ui/menus/main_menu.gd" id="2_yooqa"]
-[ext_resource type="PackedScene" uid="uid://xlmqh35mf3qv" path="res://scenes/ui/menus/load_game.tscn" id="4_rem1r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kb4tr"]
+font_size = 51
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -34,15 +36,15 @@ grow_vertical = 2
 
 [node name="ButtonMenu" type="VBoxContainer" parent="DynamicContent"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.5
-offset_top = -150.0
-offset_right = 155.5
-offset_bottom = 150.0
+anchors_preset = -1
+anchor_left = 0.365
+anchor_top = 0.381
+anchor_right = 0.635
+anchor_bottom = 0.731
+offset_left = 0.52
+offset_top = 0.112
+offset_right = 0.48
+offset_bottom = 0.312
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -52,19 +54,10 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "New Game"
 
-[node name="Load Game" type="Button" parent="DynamicContent/ButtonMenu"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Load Game"
-
 [node name="Exit" type="Button" parent="DynamicContent/ButtonMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
-
-[node name="LoadGame" parent="DynamicContent" instance=ExtResource("4_rem1r")]
-visible = false
-layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -94,6 +87,18 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "PET CODE UEL"
 
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.138889
+anchor_right = 1.0
+anchor_bottom = 0.246914
+grow_horizontal = 2
+size_flags_horizontal = 0
+text = "Jogo da Fazenda"
+label_settings = SubResource("LabelSettings_kb4tr")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="DynamicContent/ButtonMenu/New Game" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="DynamicContent/ButtonMenu/Load Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="DynamicContent/ButtonMenu/Exit" to="." method="_on_exit_pressed"]
