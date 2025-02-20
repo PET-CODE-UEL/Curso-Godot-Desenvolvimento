@@ -5,6 +5,7 @@ var distance = 100.0
 signal update_prompt_text
 signal harvested_crop
 
+@onready var hand_anim_tree: AnimationTree = get_node("../Hand/AnimationTree")
 @export var corn_scene : PackedScene
 @export var tomato_scene : PackedScene
 @export var plantation_scene : PackedScene
@@ -12,36 +13,52 @@ signal harvested_crop
 
 # PROCESS QUE CHECA A POSSIBILIDADE DE ACOES
 func _process(_delta):
-	if Input.is_action_just_pressed("interacao"):
+	var hotbar = get_node_or_null("/root/Main/UI/HUD/Margin/Margin/Hotbar")  # 🔥 Obtendo a hotbar
+	var item_atual
+	if hotbar:
+		var selected_item = InventoryManager.get_hotbar_item(hotbar.selected_index)  # 🔥 Pegando o item no slot selecionado
+		if selected_item:
+			item_atual = selected_item.name
+			
+	if Input.is_action_just_pressed("interacao") and item_atual == "Foice":
 		interact()
+		set_item_interagir(true)
 	if Input.is_action_just_pressed("plant"):
 		plant(CropTypes.CROP_TYPE.TOMATO)
-	if Input.is_action_just_pressed("prepare_ground"):
+		set_item_interagir(true)
+	if Input.is_action_just_pressed("prepare_ground") and item_atual == "Enxada":
 		prepare_ground()
-	if Input.is_action_just_pressed("watering_crop"):
+		set_item_interagir(true)
+	if Input.is_action_just_pressed("watering_crop") and item_atual == "Regador":
 		watering_crop()
+		set_item_interagir(true)
 	if Input.is_action_just_pressed("fertilizing"):
 		fertilizing_soil()
+		set_item_interagir(true)
 	if Input.is_action_just_pressed("spawn_chicken"):
 		spawn_chicken()
+		set_item_interagir(true)
 	if Input.is_action_just_pressed("collect_egg"):
 		collect_egg()
-
+		set_item_interagir(true)
+	
 	var crop_ray = raycast(2)
 	var soil_ray = raycast(4)
 	var ground_ray = raycast(1)
 	var chicken_ray = raycast(8)
 	if chicken_ray:
 		emit_signal("update_prompt_text", chicken_ray.collider.update_prompt_text())
-	elif crop_ray:
+	elif crop_ray :
 		emit_signal("update_prompt_text", crop_ray.collider.update_prompt_text())
 	elif soil_ray:
 		emit_signal("update_prompt_text", soil_ray.collider.update_prompt_text())
-	elif ground_ray:
+	elif ground_ray and item_atual == "Enxada":
 		emit_signal("update_prompt_text", ground_ray.collider.update_prompt_text())
 	else:
 		emit_signal("update_prompt_text", "")
-
+	
+	await get_tree().create_timer(0.1).timeout
+	set_item_interagir(false)
 # ==============================================================================
 # SEGUEM AS FUNCOES BASICAS DO JOGO
 # NOTA SE QUE ELAS SE ASSEMELHAM MUITO
@@ -157,3 +174,6 @@ func collect_egg():
 	if result:
 		if result.collider:
 			result.collider.interact()
+			
+func set_item_interagir(value: bool):
+	hand_anim_tree["parameters/conditions/interagindo"] = value

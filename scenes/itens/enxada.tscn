@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://xsqxt151x2ym"]
+
+[ext_resource type="PackedScene" uid="uid://jfbaxlnfi85f" path="res://assets/models/enxada.glb" id="1_sp8ek"]
+
+[node name="Enxada" type="Node3D"]
+
+[node name="enxada" parent="." instance=ExtResource("1_sp8ek")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.25751, 0)

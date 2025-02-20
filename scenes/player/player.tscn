@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brnjfmevhvwcy"]
+[gd_scene load_steps=26 format=3 uid="uid://brnjfmevhvwcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_qq77i"]
 [ext_resource type="Script" path="res://scripts/cultivation/interacter.gd" id="2_y4ix7"]
@@ -7,9 +7,103 @@
 [ext_resource type="PackedScene" uid="uid://c5gonk7lrvfi5" path="res://scenes/player/player_model.tscn" id="4_l6emr"]
 [ext_resource type="PackedScene" uid="uid://dac7sxoy38h1c" path="res://scenes/plants/tomato.tscn" id="4_v0ukv"]
 [ext_resource type="PackedScene" uid="uid://cawj88oyis3pg" path="res://scenes/animals/chicken.tscn" id="6_ksyij"]
+[ext_resource type="Script" path="res://scripts/player/hand.gd" id="8_f5vlf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7qcy"]
 size = Vector3(2.33863, 4.72286, 3.36939)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h0erv"]
+
+[sub_resource type="Animation" id="Animation_02ftv"]
+resource_name = "item_anim"
+loop_mode = 2
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat64Array(0, 1, 0, 0, 0, 1, 0.5, 1, -0.237508, 0, 0, 0.971386, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jj3ao"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat64Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_cq4ri"]
+resource_name = "interagir"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat64Array(0, 1, 0, 0, 0, 1, 1, 1, -0.596715, 0, 0, 0.802453)
+
+[sub_resource type="Animation" id="Animation_s0gvd"]
+resource_name = "idle"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat64Array()
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7gti0"]
+_data = {
+"RESET": SubResource("Animation_jj3ao"),
+"idle": SubResource("Animation_s0gvd"),
+"interagir": SubResource("Animation_cq4ri"),
+"item_anim": SubResource("Animation_02ftv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ii80"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8jdf"]
+animation = &"interagir"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1thlh"]
+animation = &"item_anim"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ioa3y"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3sscq"]
+advance_mode = 2
+advance_condition = &"walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lcamb"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bigce"]
+advance_mode = 2
+advance_condition = &"interagindo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sfh3a"]
+advance_mode = 2
+advance_condition = &"interagindo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ry4kb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gwswr"]
+states/Start/position = Vector2(103, 65)
+states/idle/node = SubResource("AnimationNodeAnimation_6ii80")
+states/idle/position = Vector2(285, 58)
+states/interagir/node = SubResource("AnimationNodeAnimation_i8jdf")
+states/interagir/position = Vector2(285, 171)
+states/item_anim/node = SubResource("AnimationNodeAnimation_1thlh")
+states/item_anim/position = Vector2(475, 118)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ioa3y"), "idle", "item_anim", SubResource("AnimationNodeStateMachineTransition_3sscq"), "item_anim", "idle", SubResource("AnimationNodeStateMachineTransition_lcamb"), "idle", "interagir", SubResource("AnimationNodeStateMachineTransition_bigce"), "item_anim", "interagir", SubResource("AnimationNodeStateMachineTransition_sfh3a"), "interagir", "idle", SubResource("AnimationNodeStateMachineTransition_ry4kb")]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 8
@@ -40,3 +134,22 @@ transform = Transform3D(-1, -3.16962e-17, 1.18292e-16, 0, 0.965926, 0.258819, -1
 
 [node name="ThirdPerson" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2, 8)
+
+[node name="Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31517, -0.177245, -2.00986)
+script = ExtResource("8_f5vlf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand"]
+mesh = SubResource("CylinderMesh_h0erv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand"]
+libraries = {
+"": SubResource("AnimationLibrary_7gti0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Hand"]
+tree_root = SubResource("AnimationNodeStateMachine_gwswr")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/interagindo = false
+parameters/conditions/walking = false

@@ -27,11 +27,14 @@ func _input(event):
 		if event.is_action_pressed("hotbar_%d" % (i + 1)):
 			select_slot(i)
 
+signal slot_selected(index)
+
 func select_slot(index: int):
 	if index >= 0 and index < InventoryManager.HOTBAR_SIZE:
 		clear_selected_style()
 		selected_index = index
 		set_selected_style(slots[selected_index])
+		slot_selected.emit(index)  # 🔥 Emite o sinal para atualizar a mão
 
 func clear_selected_style():
 	for slot in slots:

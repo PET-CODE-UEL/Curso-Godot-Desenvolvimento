@@ -28,16 +28,26 @@ var current_camera_mode: CameraModes = CameraModes.FIRST_PERSON
 @onready var animation_tree: AnimationTree = $"CollisionShape3D/PlayerModel/Armação/AnimationTree"
 @onready var skeleton: Skeleton3D = $"CollisionShape3D/PlayerModel/Armação/Skeleton3D"
 @onready var head_bone := skeleton.find_bone("Coluna Superior")
+@onready var hand_anim_tree : AnimationTree = $Hand/AnimationTree
+@onready var hand_anim_state: AnimationNodeStateMachinePlayback = hand_anim_tree.get("parameters/playback")
 
 #----------------------------- Interação -------------------------------------------
 @onready var interacter = $Interacter
 
 
 func _ready():
+	await get_tree().process_frame  # Aguarda um frame para garantir que a HUD foi carregada
+	#print_tree_structure()  # 🔥 Mostra toda a árvore de nós
 	update_camera_mode()
 	interacter.connect("update_prompt_text", UIManager.update_prompt_text)
 
 #------------------------------------------------------------------------------------
+
+func print_tree_structure(node: Node = get_tree().current_scene, indent: String = ""):
+	print(indent + node.name)  # Exibe o nome do nó com indentação
+	for child in node.get_children():
+		print_tree_structure(child, indent + "  ")  # Chama recursivamente para os filhos
+
 
 func _process(_delta):
 	rotation.y = rotation_horizontal
@@ -88,7 +98,10 @@ func _physics_process(delta: float) -> void:
 func set_walk(value: bool):
 	animation_tree["parameters/conditions/walking"] = value
 	animation_tree["parameters/conditions/idle"] = not value
-
+	hand_anim_tree["parameters/conditions/walking"] = value
+	hand_anim_tree["parameters/conditions/idle"] = not value
+	
+	
 func cycle_camera_mode():
 	var camera_modes := CameraModes.values()
 	current_camera_mode = camera_modes[(int(current_camera_mode) + 1) % camera_modes.size()]

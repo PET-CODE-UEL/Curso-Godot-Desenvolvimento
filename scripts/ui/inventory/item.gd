@@ -7,14 +7,16 @@ extends Resource
 @export var quantity: int = 1
 @export var price: int = 0
 @export var can_sell: bool = true
+@export var scene_path: String = ""  # Caminho da cena do item
 
 func clone() -> Item:
-    # Cria uma cópia deste item
-    var new_item = Item.new()
-    new_item.name = name
-    new_item.texture = texture
-    new_item.max_stack = max_stack
-    new_item.quantity = quantity
-    new_item.price = price
-    new_item.can_sell = can_sell
-    return new_item
+	# Cria uma cópia deste item
+	var new_item = Item.new()
+	new_item.name = name
+	new_item.texture = texture
+	new_item.max_stack = max_stack
+	new_item.quantity = quantity
+	new_item.price = price
+	new_item.can_sell = can_sell
+	new_item.scene_path = scene_path
+	return new_item

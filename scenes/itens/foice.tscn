@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxhp4cp4138de"]
+
+[ext_resource type="PackedScene" uid="uid://j5kmgx0imetu" path="res://assets/models/foice.glb" id="1_aslr8"]
+
+[node name="Foice" type="Node3D"]
+
+[node name="foice" parent="." instance=ExtResource("1_aslr8")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.93213, 0)

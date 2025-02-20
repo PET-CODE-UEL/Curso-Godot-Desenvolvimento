@@ -23,7 +23,7 @@ UIManager="*res://scripts/ui/ui_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
